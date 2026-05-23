@@ -27,6 +27,12 @@ export default function Header() {
 
   const currentLang = siteConfig.languages.find(l => l.code === i18n.language) || siteConfig.languages[0];
 
+  // The home page has a full-screen green hero behind the (transparent) navbar,
+  // so light text is needed at the top. On all other pages the navbar sits on
+  // a white background from the start, so we always use dark text there.
+  const isHomePage = location.pathname === '/';
+  const useDarkText = isScrolled || !isHomePage;
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -42,8 +48,8 @@ export default function Header() {
           <Link
             to="/"
             className={`font-heading text-xl sm:text-2xl font-semibold transition-all duration-500 ${
-              isScrolled ? 'scale-90 text-[#333]' : 'scale-100 text-white'
-            }`}
+              isScrolled ? 'scale-90' : 'scale-100'
+            } ${useDarkText ? 'text-[#333]' : 'text-white'}`}
             style={{ transitionTimingFunction: 'var(--ease-sacred)' }}
           >
             <span className="text-gold">{siteConfig.siteName.split(' ')[0]}</span>{' '}
@@ -59,7 +65,7 @@ export default function Header() {
                 className={`nav-link px-3 py-2 text-sm font-medium transition-colors duration-300 ${
                   location.pathname === item.href
                     ? 'text-gold'
-                    : isScrolled
+                    : useDarkText
                       ? 'text-[#333] hover:text-gold'
                       : 'text-white hover:text-gold'
                 }`}
@@ -76,7 +82,7 @@ export default function Header() {
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className={`flex items-center space-x-2 px-3 py-2 text-sm font-medium hover:text-gold transition-colors duration-300 ${
-                  isScrolled ? 'text-[#333]' : 'text-white'
+                  useDarkText ? 'text-[#333]' : 'text-white'
                 }`}
               >
                 <Globe className="w-4 h-4" />
@@ -120,7 +126,7 @@ export default function Header() {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`lg:hidden p-2 hover:text-gold transition-colors duration-300 ${
-                isScrolled ? 'text-[#333]' : 'text-white'
+                useDarkText ? 'text-[#333]' : 'text-white'
               }`}
             >
               {isMobileMenuOpen ? (
