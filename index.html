@@ -27,6 +27,26 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <!--
+      Static form for Netlify Forms detection.
+      Netlify scans index.html at deploy time and registers any <form> with
+      data-netlify="true". The React form below submits via fetch to '/' with
+      the same name and field names, and Netlify routes the submission here.
+      This form is hidden from users.
+    -->
+    <form
+      name="contact"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="subject" />
+      <textarea name="message"></textarea>
+    </form>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
