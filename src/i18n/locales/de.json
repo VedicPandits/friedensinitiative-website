@@ -113,8 +113,22 @@
       "title": "Kontaktinformationen",
       "email": "E-Mail",
       "phone": "Telefon",
-      "address": "Adresse"
-    }
+      "address": "Postadresse"
+    },
+    "subjectOptions": {
+      "placeholder": "Bitte Betreff wählen",
+      "general": "Allgemeine Anfrage",
+      "donation": "Fragen zu Spenden",
+      "volunteer": "Mitmachen / Freiwilligenarbeit",
+      "media": "Medienanfragen",
+      "other": "Sonstiges"
+    },
+    "officeHours": {
+      "title": "Bürozeiten",
+      "line1": "Montag – Freitag: 9:00 – 17:00 Uhr",
+      "line2": "Samstag – Sonntag: geschlossen"
+    },
+    "responseTime": "Wir antworten in der Regel innerhalb von 24–48 Stunden an Werktagen."
   },
   "languages": {
     "en": "English",
