@@ -14,7 +14,10 @@ export const siteConfig = {
   contact: {
     email: 'info@friedensinitiative.ch',
     phone: '+41 44 260 44 72',
-    address: 'Globale Friedensinitiative Schweiz\n4000 Basel',
+    // Postal address is shown in two visual styles: organization name bold,
+    // address line(s) normal weight underneath.
+    organizationName: 'Globale Friedensinitiative Schweiz',
+    addressLine: '4000 Basel',
     showOfficeHours: false, // Set to true to show the office hours block
   },
   
@@ -27,32 +30,20 @@ export const siteConfig = {
   },
   
   // DonorBox Configuration - EDIT THESE
-  // Each language has its own DonorBox campaign
   donorbox: {
-    // Widget script URL (same for all languages)
     scriptSrc: 'https://donorbox.org/widgets.js',
-    
-    // Campaign IDs per language
     campaigns: {
-      en: 'peaceinitiative',           // English campaign
-      de: 'friedensinitiative',        // German campaign
-      fr: 'initiative-mondiale-de-paix', // French campaign
+      en: 'peaceinitiative',
+      de: 'friedensinitiative',
+      fr: 'initiative-mondiale-de-paix',
     },
   },
   
   // Contact Form Configuration
   contactForm: {
-    // Options: 'formspree', 'netlify', 'emailjs', or 'custom'
-    // For Formspree: https://formspree.io/
-    // For Netlify Forms: https://docs.netlify.com/forms/setup/
-    provider: 'formspree',
-    
-    // Your Formspree endpoint (if using Formspree)
-    // Example: 'https://formspree.io/f/YOUR_FORM_ID'
+    provider: 'netlify',
     formspreeEndpoint: 'https://formspree.io/f/YOUR_FORM_ID',
-    
-    // Or use Netlify Forms (set to true if hosting on Netlify)
-    useNetlifyForms: false,
+    useNetlifyForms: true,
   },
   
   // Organization Info
@@ -79,7 +70,7 @@ export const siteConfig = {
     title: 'Maharishi Vedic Pandits - Peace-Creating Group',
     description: 'Creating peace for the world through the timeless Vedic traditions of India. Support the Maharishi Vedic Pandits program.',
     keywords: 'Maharishi, Vedic Pandits, Transcendental Meditation, TM, Yagya, World Peace, Vedic Tradition',
-    image: '/images/og-image.jpg', // Social sharing image
+    image: '/images/og-image.jpg',
   },
   
   // Languages available
