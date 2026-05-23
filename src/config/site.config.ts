@@ -12,9 +12,10 @@ export const siteConfig = {
   
   // Contact Information - EDIT THESE
   contact: {
-    email: 'contact@VedicPandits.org',
-    phone: '+1 (555) 123-4567', // Optional
-    address: 'Brahmasthan of India, Madhya Pradesh, India', // Optional
+    email: 'info@friedensinitiative.ch',
+    phone: '+41 44 260 44 72',
+    address: 'Globale Friedensinitiative Schweiz\n4000 Basel',
+    showOfficeHours: false, // Set to true to show the office hours block
   },
   
   // Social Media Links - EDIT THESE
