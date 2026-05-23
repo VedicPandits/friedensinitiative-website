@@ -113,8 +113,22 @@
       "title": "Contact Information",
       "email": "Email",
       "phone": "Phone",
-      "address": "Address"
-    }
+      "address": "Postal Address"
+    },
+    "subjectOptions": {
+      "placeholder": "Select a subject",
+      "general": "General Inquiry",
+      "donation": "Donation Questions",
+      "volunteer": "Volunteer Opportunities",
+      "media": "Media Inquiries",
+      "other": "Other"
+    },
+    "officeHours": {
+      "title": "Office Hours",
+      "line1": "Monday – Friday: 9:00 AM – 5:00 PM",
+      "line2": "Saturday – Sunday: Closed"
+    },
+    "responseTime": "We typically respond to inquiries within 24–48 hours during business days."
   },
   "languages": {
     "en": "English",
