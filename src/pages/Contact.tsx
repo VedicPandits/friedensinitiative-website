@@ -109,7 +109,7 @@ export default function Contact() {
       icon: MapPin,
       label: t('contact.info.address'),
       value: siteConfig.contact.address,
-      href: '#',
+      href: null, // Address is not a clickable link
     }] : []),
   ];
 
@@ -223,12 +223,12 @@ export default function Contact() {
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#c9a227] focus:border-transparent transition-all duration-300 outline-none bg-white"
                     >
-                      <option value="">Select a subject</option>
-                      <option value="general">General Inquiry</option>
-                      <option value="donation">Donation Questions</option>
-                      <option value="volunteer">Volunteer Opportunities</option>
-                      <option value="media">Media Inquiries</option>
-                      <option value="other">Other</option>
+                      <option value="">{t('contact.subjectOptions.placeholder')}</option>
+                      <option value="general">{t('contact.subjectOptions.general')}</option>
+                      <option value="donation">{t('contact.subjectOptions.donation')}</option>
+                      <option value="volunteer">{t('contact.subjectOptions.volunteer')}</option>
+                      <option value="media">{t('contact.subjectOptions.media')}</option>
+                      <option value="other">{t('contact.subjectOptions.other')}</option>
                     </select>
                   </div>
 
@@ -280,39 +280,56 @@ export default function Contact() {
               style={{ transitionTimingFunction: 'var(--ease-dramatic)', transitionDelay: '400ms' }}
             >
               <div className="bg-gradient-to-br from-[#1a3a2a] to-[#2d5a45] rounded-xl shadow-xl p-8 text-white">
-                <h2 className="font-heading text-2xl mb-8">{t('contact.info.title')}</h2>
+                <h2 className="font-heading text-2xl text-white mb-8">{t('contact.info.title')}</h2>
 
                 <div className="space-y-6">
-                  {contactInfo.map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="flex items-start space-x-4 group"
-                    >
-                      <div className="w-12 h-12 rounded-full bg-[#c9a227]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#c9a227]/30 transition-colors duration-300">
-                        <item.icon className="w-5 h-5 text-[#c9a227]" />
+                  {contactInfo.map((item) => {
+                    const Inner = (
+                      <>
+                        <div className="w-12 h-12 rounded-full bg-[#c9a227]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#c9a227]/30 transition-colors duration-300">
+                          <item.icon className="w-5 h-5 text-[#c9a227]" />
+                        </div>
+                        <div>
+                          <p className="text-white/60 text-sm mb-1">{item.label}</p>
+                          <p className="text-white group-hover:text-[#c9a227] transition-colors duration-300 whitespace-pre-line">{item.value}</p>
+                        </div>
+                      </>
+                    );
+
+                    return item.href ? (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        className="flex items-start space-x-4 group"
+                      >
+                        {Inner}
+                      </a>
+                    ) : (
+                      <div
+                        key={item.label}
+                        className="flex items-start space-x-4 group"
+                      >
+                        {Inner}
                       </div>
-                      <div>
-                        <p className="text-white/60 text-sm mb-1">{item.label}</p>
-                        <p className="text-white group-hover:text-[#c9a227] transition-colors duration-300">{item.value}</p>
-                      </div>
-                    </a>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 {/* Office Hours */}
-                <div className="mt-10 pt-8 border-t border-white/20">
-                  <h3 className="font-heading text-lg mb-4">Office Hours</h3>
-                  <div className="space-y-2 text-white/80">
-                    <p>Monday - Friday: 9:00 AM - 5:00 PM IST</p>
-                    <p>Saturday - Sunday: Closed</p>
+                {siteConfig.contact.showOfficeHours && (
+                  <div className="mt-10 pt-8 border-t border-white/20">
+                    <h3 className="font-heading text-lg text-white mb-4">{t('contact.officeHours.title')}</h3>
+                    <div className="space-y-2 text-white/80">
+                      <p>{t('contact.officeHours.line1')}</p>
+                      <p>{t('contact.officeHours.line2')}</p>
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Response Time */}
                 <div className="mt-8 p-4 bg-white/10 rounded-lg">
                   <p className="text-sm text-white/80">
-                    We typically respond to inquiries within 24-48 hours during business days.
+                    {t('contact.responseTime')}
                   </p>
                 </div>
               </div>
