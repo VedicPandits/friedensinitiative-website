@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maharishi Vedic Pandits – Friedensinitiative</title>
+
+    <!--
+      Netlify Identity Widget:
+      - Required so invited users can set their password.
+      - When an invitee clicks the email link, they land here with a #invite_token=...
+        hash. The widget below picks that up and shows the signup modal.
+      - After login, redirect to /admin/ so they can edit content.
+    -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', function (user) {
+          if (!user) {
+            window.netlifyIdentity.on('login', function () {
+              document.location.href = '/admin/';
+            });
+          }
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

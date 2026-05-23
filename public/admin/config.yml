@@ -1,0 +1,583 @@
+# =============================================================================
+# Decap CMS Configuration
+# =============================================================================
+# Backend: Git Gateway (uses Netlify Identity for auth, commits to GitHub)
+# Repo:    VedicPandits/friedensinitiative-website
+# =============================================================================
+
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: 'CMS: Create {{collection}} "{{slug}}"'
+    update: 'CMS: Update {{collection}} "{{slug}}"'
+    delete: 'CMS: Delete {{collection}} "{{slug}}"'
+    uploadMedia: 'CMS: Upload "{{path}}"'
+    deleteMedia: 'CMS: Delete "{{path}}"'
+
+# Editorial workflow lets editors save drafts before publishing.
+# Comment this out if you want all saves to publish immediately.
+publish_mode: editorial_workflow
+
+# Media uploads land in public/uploads and are served from /uploads
+media_folder: public/uploads
+public_folder: /uploads
+
+# Logo and site URL (will display correctly once deployed)
+site_url: https://friedensinitiative-website.netlify.app
+display_url: https://friedensinitiative-website.netlify.app
+
+# Show a friendly notice if config.yml has issues
+locale: 'en'
+
+# =============================================================================
+# COLLECTIONS
+# =============================================================================
+# Strategy: ONE collection per language. Each collection edits exactly one
+# locale JSON file (en.json / de.json / fr.json). This avoids merge conflicts
+# that occur when multiple Decap "files" target the same source file.
+# =============================================================================
+
+collections:
+
+  # ---------------------------------------------------------------------------
+  # ENGLISH CONTENT
+  # ---------------------------------------------------------------------------
+  - name: content-en
+    label: '🇬🇧 English Content'
+    label_singular: 'English page'
+    description: 'All English website text. Edit one section at a time.'
+    editor:
+      preview: false
+    files:
+      - name: en-content
+        label: 'English – All sections'
+        file: 'src/i18n/locales/en.json'
+        fields:
+          - label: 'Navigation'
+            name: nav
+            widget: object
+            fields:
+              - { label: 'Home',      name: home,      widget: string }
+              - { label: 'About',     name: about,     widget: string }
+              - { label: 'Maharishi', name: maharishi, widget: string, required: false }
+              - { label: 'Donate',    name: donate,    widget: string }
+              - { label: 'Contact',   name: contact,   widget: string }
+
+          - label: 'Hero section'
+            name: hero
+            widget: object
+            fields:
+              - { label: 'Subtitle',    name: subtitle,    widget: string }
+              - { label: 'Title',       name: title,       widget: string }
+              - { label: 'Description', name: description, widget: text }
+              - { label: 'Scroll-down label', name: scrollDown, widget: string, required: false }
+
+          - label: 'Training section'
+            name: training
+            widget: object
+            fields:
+              - { label: 'Title',       name: title,      widget: string, hint: 'Use {{highlight}}...{{/highlight}} to highlight words in gold.' }
+              - { label: 'Paragraph 1', name: paragraph1, widget: text }
+              - { label: 'Paragraph 2', name: paragraph2, widget: text }
+              - { label: 'Paragraph 3', name: paragraph3, widget: text }
+
+          - label: 'Yoga section'
+            name: yoga
+            widget: object
+            fields:
+              - { label: 'Title',             name: title,             widget: string }
+              - { label: 'Paragraph 1',       name: paragraph1,        widget: text }
+              - { label: 'Paragraph 2',       name: paragraph2,        widget: text }
+              - { label: 'Quote intro',       name: quoteIntro,        widget: text }
+              - { label: 'Sanskrit quote',    name: sanskritQuote,     widget: string }
+              - { label: 'Quote translation', name: quoteTranslation,  widget: text }
+              - { label: 'Quote source',      name: quoteSource,       widget: string }
+              - { label: 'Closing text',      name: closingText,       widget: text }
+
+          - label: 'Yagya section'
+            name: yagya
+            widget: object
+            fields:
+              - { label: 'Title',       name: title,      widget: string }
+              - { label: 'Paragraph 1', name: paragraph1, widget: text }
+              - { label: 'Paragraph 2', name: paragraph2, widget: text }
+              - { label: 'Paragraph 3', name: paragraph3, widget: text }
+              - { label: 'Paragraph 4', name: paragraph4, widget: text, hint: 'Use {{panditsCount}} for the daily pandits number.' }
+              - { label: 'Stat 1 label', name: stat1, widget: string, required: false }
+              - { label: 'Stat 2 label', name: stat2, widget: string, required: false }
+
+          - label: 'Media section'
+            name: media
+            widget: object
+            fields:
+              - { label: 'Title',          name: title,         widget: string }
+              - { label: 'Description',    name: description,   widget: text }
+              - { label: 'Video title',    name: videoTitle,    widget: string }
+              - { label: 'Featured video', name: featuredVideo, widget: string }
+              - { label: 'More videos',    name: moreVideos,    widget: string }
+              - { label: 'Photo gallery',  name: photoGallery,  widget: string }
+
+          - label: 'About page'
+            name: about
+            widget: object
+            fields:
+              - { label: 'Title',                 name: title,            widget: string }
+              - { label: 'Subtitle',              name: subtitle,         widget: string }
+              - { label: 'Introduction',          name: intro,            widget: text }
+              - { label: 'Early life – title',    name: earlyLife,        widget: string }
+              - { label: 'Early life – text',     name: earlyLifeText,    widget: text }
+              - { label: 'Teaching – title',      name: teaching,         widget: string }
+              - { label: 'Teaching – text',       name: teachingText,     widget: text }
+              - { label: 'Vedic science – title', name: vedicScience,     widget: string }
+              - { label: 'Vedic science – text',  name: vedicScienceText, widget: text }
+
+          - label: 'Donate page'
+            name: donate
+            widget: object
+            fields:
+              - { label: 'Title',          name: title,         widget: string }
+              - { label: 'Subtitle',       name: subtitle,      widget: string }
+              - { label: 'Introduction',   name: intro,         widget: text }
+              - { label: 'Why donate – title', name: whyDonate,     widget: string }
+              - { label: 'Why donate – text',  name: whyDonateText, widget: text }
+              - { label: 'How used – title',   name: howUsed,       widget: string }
+              - { label: 'How used – text',    name: howUsedText,   widget: text }
+              - { label: 'Global impact – title', name: globalImpact, widget: string }
+              - { label: 'Global impact – text',  name: globalImpactText, widget: text }
+              - { label: 'Monthly – title',    name: monthly,       widget: string }
+              - { label: 'Monthly – text',     name: monthlyText,   widget: text }
+              - { label: 'One-time – title',   name: oneTime,       widget: string }
+              - { label: 'One-time – text',    name: oneTimeText,   widget: text }
+              - { label: 'Donate button',  name: donateButton,  widget: string }
+              - { label: 'Widget – title',    name: widgetTitle,    widget: string, hint: 'Heading shown above the DonorBox widget.' }
+              - { label: 'Widget – subtitle', name: widgetSubtitle, widget: string }
+              - { label: 'One-time bullet 1', name: oneTimeBullet1, widget: string }
+              - { label: 'One-time bullet 2', name: oneTimeBullet2, widget: string }
+              - { label: 'One-time bullet 3', name: oneTimeBullet3, widget: string }
+              - { label: 'Monthly bullet 1',  name: monthlyBullet1, widget: string }
+              - { label: 'Monthly bullet 2',  name: monthlyBullet2, widget: string }
+              - { label: 'Monthly bullet 3',  name: monthlyBullet3, widget: string }
+              - { label: 'Other ways – title',   name: otherWaysTitle,   widget: string }
+              - { label: 'Other ways – bullet 1', name: otherWaysBullet1, widget: string }
+              - { label: 'Other ways – bullet 2', name: otherWaysBullet2, widget: string, hint: 'Use {{orgName}} to insert the organization name.' }
+              - { label: 'Other ways – bullet 3', name: otherWaysBullet3, widget: string }
+              - { label: 'Other ways – bullet 4', name: otherWaysBullet4, widget: string }
+              - { label: 'Tax note',         name: taxNote,        widget: text, hint: 'Use {{orgName}} and {{orgDescription}} for organization info.' }
+
+          - label: 'Contact page'
+            name: contact
+            widget: object
+            fields:
+              - { label: 'Title',       name: title,    widget: string }
+              - { label: 'Subtitle',    name: subtitle, widget: string }
+              - { label: 'Introduction', name: intro,   widget: text }
+              - label: 'Contact form labels'
+                name: form
+                widget: object
+                fields:
+                  - { label: 'Name field',    name: name,    widget: string }
+                  - { label: 'Email field',   name: email,   widget: string }
+                  - { label: 'Subject field', name: subject, widget: string }
+                  - { label: 'Message field', name: message, widget: string }
+                  - { label: 'Send button',   name: send,    widget: string }
+                  - { label: 'Sending state', name: sending, widget: string }
+                  - { label: 'Success message', name: success, widget: string }
+                  - { label: 'Error message',   name: error,   widget: string }
+              - label: 'Contact information'
+                name: info
+                widget: object
+                fields:
+                  - { label: 'Section title', name: title,   widget: string }
+                  - { label: 'Email label',   name: email,   widget: string }
+                  - { label: 'Phone label',   name: phone,   widget: string }
+                  - { label: 'Address label', name: address, widget: string }
+
+          - label: 'Footer'
+            name: footer
+            widget: object
+            fields:
+              - { label: 'Contact text',  name: contactText, widget: string }
+              - { label: 'Terms link',    name: termsLink,   widget: string }
+              - { label: 'YouTube label', name: youtube,     widget: string }
+              - { label: 'Facebook label', name: facebook,   widget: string }
+              - { label: 'Twitter label', name: twitter,     widget: string }
+              - { label: 'Copyright',     name: copyright,   widget: string, hint: 'Use {{year}} for the current year.' }
+              - { label: 'Trademark',     name: trademark,   widget: text }
+
+          - label: 'Language labels'
+            name: languages
+            widget: object
+            fields:
+              - { label: 'English', name: en, widget: string }
+              - { label: 'Deutsch', name: de, widget: string }
+              - { label: 'Français', name: fr, widget: string }
+
+  # ---------------------------------------------------------------------------
+  # GERMAN CONTENT
+  # ---------------------------------------------------------------------------
+  - name: content-de
+    label: '🇩🇪 Deutsche Inhalte'
+    label_singular: 'Deutsche Seite'
+    description: 'Alle deutschen Website-Texte. Editiere einen Abschnitt nach dem anderen.'
+    editor:
+      preview: false
+    files:
+      - name: de-content
+        label: 'Deutsch – Alle Abschnitte'
+        file: 'src/i18n/locales/de.json'
+        fields:
+          - label: 'Navigation'
+            name: nav
+            widget: object
+            fields:
+              - { label: 'Startseite', name: home,      widget: string }
+              - { label: 'Über uns',   name: about,     widget: string }
+              - { label: 'Maharishi',  name: maharishi, widget: string, required: false }
+              - { label: 'Spenden',    name: donate,    widget: string }
+              - { label: 'Kontakt',    name: contact,   widget: string }
+
+          - label: 'Hero-Bereich'
+            name: hero
+            widget: object
+            fields:
+              - { label: 'Untertitel',   name: subtitle,    widget: string }
+              - { label: 'Titel',        name: title,       widget: string }
+              - { label: 'Beschreibung', name: description, widget: text }
+              - { label: 'Scroll-Label', name: scrollDown,  widget: string, required: false }
+
+          - label: 'Ausbildung'
+            name: training
+            widget: object
+            fields:
+              - { label: 'Titel',    name: title,      widget: string, hint: 'Mit {{highlight}}...{{/highlight}} können Wörter gold hervorgehoben werden.' }
+              - { label: 'Absatz 1', name: paragraph1, widget: text }
+              - { label: 'Absatz 2', name: paragraph2, widget: text }
+              - { label: 'Absatz 3', name: paragraph3, widget: text }
+
+          - label: 'Yoga'
+            name: yoga
+            widget: object
+            fields:
+              - { label: 'Titel',                name: title,             widget: string }
+              - { label: 'Absatz 1',             name: paragraph1,        widget: text }
+              - { label: 'Absatz 2',             name: paragraph2,        widget: text }
+              - { label: 'Zitat-Einführung',     name: quoteIntro,        widget: text }
+              - { label: 'Sanskrit-Zitat',       name: sanskritQuote,     widget: string }
+              - { label: 'Zitat-Übersetzung',    name: quoteTranslation,  widget: text }
+              - { label: 'Zitat-Quelle',         name: quoteSource,       widget: string }
+              - { label: 'Abschlusstext',        name: closingText,       widget: text }
+
+          - label: 'Yagya'
+            name: yagya
+            widget: object
+            fields:
+              - { label: 'Titel',     name: title,      widget: string }
+              - { label: 'Absatz 1',  name: paragraph1, widget: text }
+              - { label: 'Absatz 2',  name: paragraph2, widget: text }
+              - { label: 'Absatz 3',  name: paragraph3, widget: text }
+              - { label: 'Absatz 4',  name: paragraph4, widget: text, hint: 'Mit {{panditsCount}} wird die Anzahl der Pandits eingefügt.' }
+              - { label: 'Statistik 1', name: stat1, widget: string, required: false }
+              - { label: 'Statistik 2', name: stat2, widget: string, required: false }
+
+          - label: 'Medien'
+            name: media
+            widget: object
+            fields:
+              - { label: 'Titel',                name: title,         widget: string }
+              - { label: 'Beschreibung',         name: description,   widget: text }
+              - { label: 'Video-Titel',          name: videoTitle,    widget: string }
+              - { label: 'Empfohlenes Video',    name: featuredVideo, widget: string }
+              - { label: 'Weitere Videos',       name: moreVideos,    widget: string }
+              - { label: 'Fotogalerie',          name: photoGallery,  widget: string }
+
+          - label: 'Über Maharishi (Seite)'
+            name: about
+            widget: object
+            fields:
+              - { label: 'Titel',              name: title,            widget: string }
+              - { label: 'Untertitel',         name: subtitle,         widget: string }
+              - { label: 'Einleitung',         name: intro,            widget: text }
+              - { label: 'Frühes Leben – Titel', name: earlyLife,      widget: string }
+              - { label: 'Frühes Leben – Text',  name: earlyLifeText,  widget: text }
+              - { label: 'Lehre – Titel',      name: teaching,         widget: string }
+              - { label: 'Lehre – Text',       name: teachingText,     widget: text }
+              - { label: 'Vedische Wissenschaft – Titel', name: vedicScience,     widget: string }
+              - { label: 'Vedische Wissenschaft – Text',  name: vedicScienceText, widget: text }
+
+          - label: 'Spenden-Seite'
+            name: donate
+            widget: object
+            fields:
+              - { label: 'Titel',         name: title,         widget: string }
+              - { label: 'Untertitel',    name: subtitle,      widget: string }
+              - { label: 'Einleitung',    name: intro,         widget: text }
+              - { label: 'Warum spenden – Titel', name: whyDonate,     widget: string }
+              - { label: 'Warum spenden – Text',  name: whyDonateText, widget: text }
+              - { label: 'Verwendung – Titel',    name: howUsed,       widget: string }
+              - { label: 'Verwendung – Text',     name: howUsedText,   widget: text }
+              - { label: 'Globale Wirkung – Titel', name: globalImpact, widget: string }
+              - { label: 'Globale Wirkung – Text',  name: globalImpactText, widget: text }
+              - { label: 'Monatlich – Titel',     name: monthly,       widget: string }
+              - { label: 'Monatlich – Text',      name: monthlyText,   widget: text }
+              - { label: 'Einmalig – Titel',      name: oneTime,       widget: string }
+              - { label: 'Einmalig – Text',       name: oneTimeText,   widget: text }
+              - { label: 'Spenden-Button',        name: donateButton,  widget: string }
+              - { label: 'Widget – Titel',    name: widgetTitle,    widget: string, hint: 'Überschrift über dem DonorBox-Widget.' }
+              - { label: 'Widget – Untertitel', name: widgetSubtitle, widget: string }
+              - { label: 'Einmalig – Punkt 1', name: oneTimeBullet1, widget: string }
+              - { label: 'Einmalig – Punkt 2', name: oneTimeBullet2, widget: string }
+              - { label: 'Einmalig – Punkt 3', name: oneTimeBullet3, widget: string }
+              - { label: 'Monatlich – Punkt 1', name: monthlyBullet1, widget: string }
+              - { label: 'Monatlich – Punkt 2', name: monthlyBullet2, widget: string }
+              - { label: 'Monatlich – Punkt 3', name: monthlyBullet3, widget: string }
+              - { label: 'Weitere Möglichkeiten – Titel',   name: otherWaysTitle,   widget: string }
+              - { label: 'Weitere Möglichkeiten – Punkt 1', name: otherWaysBullet1, widget: string }
+              - { label: 'Weitere Möglichkeiten – Punkt 2', name: otherWaysBullet2, widget: string, hint: 'Mit {{orgName}} wird der Organisationsname eingefügt.' }
+              - { label: 'Weitere Möglichkeiten – Punkt 3', name: otherWaysBullet3, widget: string }
+              - { label: 'Weitere Möglichkeiten – Punkt 4', name: otherWaysBullet4, widget: string }
+              - { label: 'Steuerhinweis',     name: taxNote,        widget: text, hint: 'Mit {{orgName}} und {{orgDescription}} werden Organisationsdaten eingefügt.' }
+
+          - label: 'Kontakt-Seite'
+            name: contact
+            widget: object
+            fields:
+              - { label: 'Titel',      name: title,    widget: string }
+              - { label: 'Untertitel', name: subtitle, widget: string }
+              - { label: 'Einleitung', name: intro,    widget: text }
+              - label: 'Kontaktformular-Beschriftungen'
+                name: form
+                widget: object
+                fields:
+                  - { label: 'Name-Feld',     name: name,    widget: string }
+                  - { label: 'E-Mail-Feld',   name: email,   widget: string }
+                  - { label: 'Betreff-Feld',  name: subject, widget: string }
+                  - { label: 'Nachricht-Feld', name: message, widget: string }
+                  - { label: 'Senden-Button', name: send,    widget: string }
+                  - { label: 'Wird gesendet…', name: sending, widget: string }
+                  - { label: 'Erfolgsmeldung', name: success, widget: string }
+                  - { label: 'Fehlermeldung',  name: error,   widget: string }
+              - label: 'Kontaktinformationen'
+                name: info
+                widget: object
+                fields:
+                  - { label: 'Abschnittstitel', name: title,   widget: string }
+                  - { label: 'E-Mail-Label',    name: email,   widget: string }
+                  - { label: 'Telefon-Label',   name: phone,   widget: string }
+                  - { label: 'Adress-Label',    name: address, widget: string }
+
+          - label: 'Fußzeile'
+            name: footer
+            widget: object
+            fields:
+              - { label: 'Kontakttext',   name: contactText, widget: string }
+              - { label: 'AGB-Link',      name: termsLink,   widget: string }
+              - { label: 'YouTube-Label', name: youtube,     widget: string }
+              - { label: 'Facebook-Label', name: facebook,   widget: string }
+              - { label: 'Twitter-Label', name: twitter,     widget: string }
+              - { label: 'Copyright',     name: copyright,   widget: string, hint: 'Mit {{year}} wird das aktuelle Jahr eingefügt.' }
+              - { label: 'Markenzeichen', name: trademark,   widget: text }
+
+          - label: 'Sprachbezeichnungen'
+            name: languages
+            widget: object
+            fields:
+              - { label: 'English', name: en, widget: string }
+              - { label: 'Deutsch', name: de, widget: string }
+              - { label: 'Français', name: fr, widget: string }
+
+  # ---------------------------------------------------------------------------
+  # FRENCH CONTENT
+  # ---------------------------------------------------------------------------
+  - name: content-fr
+    label: '🇫🇷 Contenu Français'
+    label_singular: 'Page française'
+    description: 'Tout le contenu français du site. Modifier une section à la fois.'
+    editor:
+      preview: false
+    files:
+      - name: fr-content
+        label: 'Français – Toutes les sections'
+        file: 'src/i18n/locales/fr.json'
+        fields:
+          - label: 'Navigation'
+            name: nav
+            widget: object
+            fields:
+              - { label: 'Accueil',   name: home,      widget: string }
+              - { label: 'À propos',  name: about,     widget: string }
+              - { label: 'Maharishi', name: maharishi, widget: string, required: false }
+              - { label: 'Faire un don', name: donate, widget: string }
+              - { label: 'Contact',   name: contact,   widget: string }
+
+          - label: 'Section Héros'
+            name: hero
+            widget: object
+            fields:
+              - { label: 'Sous-titre',  name: subtitle,    widget: string }
+              - { label: 'Titre',       name: title,       widget: string }
+              - { label: 'Description', name: description, widget: text }
+              - { label: 'Étiquette défilement', name: scrollDown, widget: string, required: false }
+
+          - label: 'Formation'
+            name: training
+            widget: object
+            fields:
+              - { label: 'Titre',         name: title,      widget: string, hint: 'Utilisez {{highlight}}...{{/highlight}} pour mettre des mots en or.' }
+              - { label: 'Paragraphe 1',  name: paragraph1, widget: text }
+              - { label: 'Paragraphe 2',  name: paragraph2, widget: text }
+              - { label: 'Paragraphe 3',  name: paragraph3, widget: text }
+
+          - label: 'Yoga'
+            name: yoga
+            widget: object
+            fields:
+              - { label: 'Titre',                  name: title,             widget: string }
+              - { label: 'Paragraphe 1',           name: paragraph1,        widget: text }
+              - { label: 'Paragraphe 2',           name: paragraph2,        widget: text }
+              - { label: 'Introduction citation',  name: quoteIntro,        widget: text }
+              - { label: 'Citation sanskrit',      name: sanskritQuote,     widget: string }
+              - { label: 'Traduction citation',    name: quoteTranslation,  widget: text }
+              - { label: 'Source citation',        name: quoteSource,       widget: string }
+              - { label: 'Texte de clôture',       name: closingText,       widget: text }
+
+          - label: 'Yagya'
+            name: yagya
+            widget: object
+            fields:
+              - { label: 'Titre',        name: title,      widget: string }
+              - { label: 'Paragraphe 1', name: paragraph1, widget: text }
+              - { label: 'Paragraphe 2', name: paragraph2, widget: text }
+              - { label: 'Paragraphe 3', name: paragraph3, widget: text }
+              - { label: 'Paragraphe 4', name: paragraph4, widget: text, hint: 'Utilisez {{panditsCount}} pour le nombre de pandits.' }
+              - { label: 'Statistique 1', name: stat1, widget: string, required: false }
+              - { label: 'Statistique 2', name: stat2, widget: string, required: false }
+
+          - label: 'Médias'
+            name: media
+            widget: object
+            fields:
+              - { label: 'Titre',            name: title,         widget: string }
+              - { label: 'Description',      name: description,   widget: text }
+              - { label: 'Titre vidéo',      name: videoTitle,    widget: string }
+              - { label: 'Vidéo en vedette', name: featuredVideo, widget: string }
+              - { label: 'Plus de vidéos',   name: moreVideos,    widget: string }
+              - { label: 'Galerie photos',   name: photoGallery,  widget: string }
+
+          - label: 'Page À propos'
+            name: about
+            widget: object
+            fields:
+              - { label: 'Titre',             name: title,            widget: string }
+              - { label: 'Sous-titre',        name: subtitle,         widget: string }
+              - { label: 'Introduction',      name: intro,            widget: text }
+              - { label: 'Jeunesse – titre',  name: earlyLife,        widget: string }
+              - { label: 'Jeunesse – texte',  name: earlyLifeText,    widget: text }
+              - { label: 'Enseignement – titre', name: teaching,      widget: string }
+              - { label: 'Enseignement – texte', name: teachingText,  widget: text }
+              - { label: 'Science védique – titre', name: vedicScience,     widget: string }
+              - { label: 'Science védique – texte', name: vedicScienceText, widget: text }
+
+          - label: 'Page Don'
+            name: donate
+            widget: object
+            fields:
+              - { label: 'Titre',           name: title,         widget: string }
+              - { label: 'Sous-titre',      name: subtitle,      widget: string }
+              - { label: 'Introduction',    name: intro,         widget: text }
+              - { label: 'Pourquoi donner – titre', name: whyDonate,     widget: string }
+              - { label: 'Pourquoi donner – texte', name: whyDonateText, widget: text }
+              - { label: 'Utilisation – titre',     name: howUsed,       widget: string }
+              - { label: 'Utilisation – texte',     name: howUsedText,   widget: text }
+              - { label: 'Impact mondial – titre',  name: globalImpact,  widget: string }
+              - { label: 'Impact mondial – texte',  name: globalImpactText, widget: text }
+              - { label: 'Mensuel – titre',         name: monthly,       widget: string }
+              - { label: 'Mensuel – texte',         name: monthlyText,   widget: text }
+              - { label: 'Ponctuel – titre',        name: oneTime,       widget: string }
+              - { label: 'Ponctuel – texte',        name: oneTimeText,   widget: text }
+              - { label: 'Bouton don',              name: donateButton,  widget: string }
+              - { label: 'Widget – titre',     name: widgetTitle,    widget: string, hint: 'Titre au-dessus du widget DonorBox.' }
+              - { label: 'Widget – sous-titre', name: widgetSubtitle, widget: string }
+              - { label: 'Ponctuel – puce 1', name: oneTimeBullet1, widget: string }
+              - { label: 'Ponctuel – puce 2', name: oneTimeBullet2, widget: string }
+              - { label: 'Ponctuel – puce 3', name: oneTimeBullet3, widget: string }
+              - { label: 'Mensuel – puce 1',  name: monthlyBullet1, widget: string }
+              - { label: 'Mensuel – puce 2',  name: monthlyBullet2, widget: string }
+              - { label: 'Mensuel – puce 3',  name: monthlyBullet3, widget: string }
+              - { label: 'Autres moyens – titre',   name: otherWaysTitle,   widget: string }
+              - { label: 'Autres moyens – puce 1', name: otherWaysBullet1, widget: string }
+              - { label: 'Autres moyens – puce 2', name: otherWaysBullet2, widget: string, hint: 'Utilisez {{orgName}} pour insérer le nom de l’organisation.' }
+              - { label: 'Autres moyens – puce 3', name: otherWaysBullet3, widget: string }
+              - { label: 'Autres moyens – puce 4', name: otherWaysBullet4, widget: string }
+              - { label: 'Note fiscale',           name: taxNote,        widget: text, hint: 'Utilisez {{orgName}} et {{orgDescription}} pour les infos d’organisation.' }
+
+          - label: 'Page Contact'
+            name: contact
+            widget: object
+            fields:
+              - { label: 'Titre',        name: title,    widget: string }
+              - { label: 'Sous-titre',   name: subtitle, widget: string }
+              - { label: 'Introduction', name: intro,    widget: text }
+              - label: 'Étiquettes formulaire'
+                name: form
+                widget: object
+                fields:
+                  - { label: 'Champ Nom',     name: name,    widget: string }
+                  - { label: 'Champ Email',   name: email,   widget: string }
+                  - { label: 'Champ Sujet',   name: subject, widget: string }
+                  - { label: 'Champ Message', name: message, widget: string }
+                  - { label: 'Bouton envoyer', name: send,    widget: string }
+                  - { label: 'État envoi',    name: sending, widget: string }
+                  - { label: 'Message succès', name: success, widget: string }
+                  - { label: 'Message erreur', name: error,   widget: string }
+              - label: 'Informations contact'
+                name: info
+                widget: object
+                fields:
+                  - { label: 'Titre section', name: title,   widget: string }
+                  - { label: 'Étiquette email', name: email, widget: string }
+                  - { label: 'Étiquette téléphone', name: phone, widget: string }
+                  - { label: 'Étiquette adresse',  name: address, widget: string }
+
+          - label: 'Pied de page'
+            name: footer
+            widget: object
+            fields:
+              - { label: 'Texte contact',  name: contactText, widget: string }
+              - { label: 'Lien CGU',       name: termsLink,   widget: string }
+              - { label: 'YouTube',        name: youtube,     widget: string }
+              - { label: 'Facebook',       name: facebook,    widget: string }
+              - { label: 'Twitter',        name: twitter,     widget: string }
+              - { label: 'Copyright',      name: copyright,   widget: string, hint: 'Utilisez {{year}} pour l’année actuelle.' }
+              - { label: 'Marque',         name: trademark,   widget: text }
+
+          - label: 'Noms de langues'
+            name: languages
+            widget: object
+            fields:
+              - { label: 'English', name: en, widget: string }
+              - { label: 'Deutsch', name: de, widget: string }
+              - { label: 'Français', name: fr, widget: string }
+
+  # ---------------------------------------------------------------------------
+  # MEDIA LIBRARY
+  # ---------------------------------------------------------------------------
+  # Browse and upload images. Files land in public/uploads and are referenced
+  # from content via /uploads/<filename>.
+  # ---------------------------------------------------------------------------
+  - name: images
+    label: '🖼️ Bilder / Images'
+    description: 'Bilder hochladen und verwalten. Upload and manage images.'
+    folder: 'public/uploads'
+    create: true
+    delete: true
+    slug: '{{slug}}'
+    extension: json
+    format: json
+    editor:
+      preview: false
+    fields:
+      - { label: 'Title',       name: title,       widget: string }
+      - { label: 'Image',       name: image,       widget: image }
+      - { label: 'Alt text',    name: alt,         widget: string }
+      - { label: 'Description', name: description, widget: text, required: false }

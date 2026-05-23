@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Content Manager – Friedensinitiative</title>
+
+  <!-- Netlify Identity Widget: handles login + invitations -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Decap CMS 3.x -->
+  <script src="https://unpkg.com/decap-cms@^3.8.4/dist/decap-cms.js"></script>
+
+  <style>
+    :root {
+      --gold: #c9a227;
+      --gold-dark: #b8921f;
+      --green: #2d5a45;
+      --green-dark: #1a3a2a;
+    }
+
+    /* Sidebar */
+    [class*="SidebarContainer"] {
+      background: linear-gradient(180deg, var(--green-dark) 0%, var(--green) 100%) !important;
+    }
+    [class*="SidebarHeader"] {
+      background: rgba(0, 0, 0, 0.2) !important;
+      border-bottom: 1px solid rgba(201, 162, 39, 0.3) !important;
+    }
+    [class*="SidebarHeading"] {
+      color: var(--gold) !important;
+      font-family: 'Cormorant Garamond', Georgia, serif !important;
+    }
+    [class*="SidebarNavLink-active"] {
+      background: rgba(201, 162, 39, 0.2) !important;
+      border-left: 3px solid var(--gold) !important;
+    }
+
+    /* Buttons */
+    [class*="Button-primary"],
+    [class*="PublishedButton"],
+    [class*="SaveButton"] {
+      background: var(--gold) !important;
+    }
+    [class*="Button-primary"]:hover {
+      background: var(--gold-dark) !important;
+    }
+
+    /* Inputs */
+    input[type="checkbox"]:checked {
+      background: var(--gold) !important;
+      border-color: var(--gold) !important;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--gold) !important;
+      box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.2) !important;
+    }
+
+    /* Links & cards */
+    a { color: var(--gold) !important; }
+    a:hover { color: var(--gold-dark) !important; }
+    [class*="Card"] { border-color: rgba(201, 162, 39, 0.2) !important; }
+    [class*="StatusIndicator"] { color: var(--gold) !important; }
+  </style>
+</head>
+<body>
+  <script>
+    // 1) Initialize Decap CMS — it reads /admin/config.yml automatically.
+    window.CMS_MANUAL_INIT = false;
+
+    // 2) Wire up Netlify Identity ↔ Decap CMS auth flow.
+    //    - If a user lands on /admin/ via an invitation link, redirect them
+    //      back to /admin/ after they finish signup so the CMS sees the token.
+    //    - On logout, send them to the home page.
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', function (user) {
+        if (!user) {
+          window.netlifyIdentity.on('login', function () {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

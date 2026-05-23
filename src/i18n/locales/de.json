@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "maharishi": "Maharishi",
+    "donate": "Spenden",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "subtitle": "Frieden schaffende Gruppe",
+    "title": "Maharishi Vedic Pandits",
+    "description": "Frieden für die Welt durch die zeitlosen vedischen Traditionen Indiens",
+    "scrollDown": "Entdecken"
+  },
+  "training": {
+    "title": "Systematische Ausbildung der {{highlight}}Maharishi Vedic Pandits{{/highlight}}",
+    "paragraph1": "Von jungen Jahren an durchlaufen Studenten aus traditionellen vedischen Familien Indiens eine systematische Ausbildung, um Friedensprofis zu werden – Maharishi Vedic Pandits. Vom Alter von 10 bis 20 Jahren folgen sie einem speziellen Studienprogramm, das von Maharishi entworfen wurde.",
+    "paragraph2": "Es umfasst das Erlernen der Transzendentalen Meditation und des TM-Sidhi-Programms sowie des Yogic Flying, das Studium von Sanskrit und die Erlangung von Fähigkeiten in der Durchführung von Yagyas, den traditionellen vedischen Zeremonien, die Glück und Frieden bringen.",
+    "paragraph3": "Ihr tägliches Studium wird mit Credits für Bachelor-, Master- und Ph.D.-Programme angerechnet, die von der Maharishi Mahesh Yogi Vedic Vishwavidyalaya verliehen werden, einer staatlichen Universität, die 1995 von der Regierung von Madhya Pradesh gegründet wurde."
+  },
+  "yoga": {
+    "title": "Experten in Yoga – {{highlight1}}Transzendentale Meditation{{/highlight1}} und {{highlight2}}Yogic Flying{{/highlight2}}",
+    "paragraph1": "Mehrere Stunden täglich üben die Maharishi Vedic Pandits im Brahmasthan das Wesen des Yoga – das Transzendentale Meditation und TM-Sidhi-Programm. Das TM-Sidhi-Programm einschließlich Yogic Flying wurde von Maharishi aus den Yoga-Sutren von Patanjali abgeleitet – dem zentralen Text der Yoga-Philosophie.",
+    "paragraph2": "Dieses Programm entwickelt die Fähigkeit, aus stilleren und kohärenteren Bewusstseinsebenen zu handeln. Je mehr die Pandits in die Fähigkeit wachsen, aus subtileren Bewusstseinsebenen zu handeln, desto effektiver werden sie bei ihrer täglichen vedischen Praxis für den Weltfrieden.",
+    "quoteIntro": "Der wichtigste vedische Text des Yoga – die Yoga-Sutren – beschreibt, wie Frieden durch die Erfahrung des Transzendierens geschaffen werden kann:",
+    "sanskritQuote": "Tat sannidhau vairatyagah",
+    "quoteTranslation": "'In der Nähe des Yoga (der Erfahrung des transzendentalen Bewusstseins, des vereinheitlichten Feldes) werden feindliche, konfliktträchtige Tendenzen beseitigt.'",
+    "quoteSource": "– Yoga-Sutra 2.35",
+    "closingText": "Wenn durch fortgeschrittene Meditation das transzendentale Bewusstsein von einer ausreichend großen Gruppe belebt wird, erstreckt sich die 'Nähe des Yoga' – die Region, die vom friedlichen Einfluss profitiert – auf die ganze Welt. Dies ist die Strategie der Globalen Friedensinitiative."
+  },
+  "yagya": {
+    "title": "Experten in {{highlight}}Yagya{{/highlight}} – umfassende Ausbildung in vedischen Zeremonien",
+    "paragraph1": "In zahlreichen kleinen Dörfern in Indien schuf Maharishi ein Netzwerk von Unterricht für Studenten, die Maharishi Vedic Pandits werden wollten. In jedem Dorf beginnen Lehrer, bekannt als Guru Jis, mit der Ausbildung von Pandit-Studenten im Alter von 10 Jahren.",
+    "paragraph2": "Mit 14 Jahren haben sie die Möglichkeit, einer von vielen regionalen Einrichtungen in ganz Indien beizutreten und Unterricht unter der Aufsicht erfahrener Acharyas (Lehrer) zu erhalten. Die Studenten folgen einem systematischen und detaillierten Ausbildungsprogramm, das von Maharishi entworfen wurde und Videobänder und computergestütztes Lernen umfasst.",
+    "paragraph3": "Wenn sie mit etwa 20 Jahren abschließen, sind sie erfahren in der Durchführung von Yagyas. Yagya ist eine zeitlose Technologie aus der vedischen Tradition. Yagyas werden von Pandits durchgeführt, um die Naturgesetze zu beleben, die das Universum auf spezifische Weise verwalten.",
+    "paragraph4": "Zum Beispiel kommen jeden Tag im Brahmasthan von Indien {{panditsCount}} Pandits zusammen, um Atirudrabhishek durchzuführen, die mächtige Yagya für den Weltfrieden. Die UNESCO hat die vedische Rezitation offiziell als 'immaterielles Kulturerbe der Menschheit' bezeichnet.",
+    "stat1": "Pandits täglich",
+    "stat2": "Jahre Ausbildung"
+  },
+  "media": {
+    "title": "Klänge und Bilder",
+    "description": "Um einen Eindruck von den Maharishi Vedic Pandits in Aktion zu bekommen, hier eine Diashow mit Audiospur von Pandits, die Yagyas durchführen.",
+    "videoTitle": "Maharishi Vedic Pandits in Aktion",
+    "featuredVideo": "Empfohlenes Video",
+    "moreVideos": "Weitere Videos",
+    "photoGallery": "Fotogalerie"
+  },
+  "footer": {
+    "contactText": "Kontaktieren Sie uns gerne per E-Mail:",
+    "termsLink": "Hier klicken für AGB und Datenschutzbestimmungen.",
+    "youtube": "Besuchen Sie uns auf YouTube",
+    "facebook": "Folgen Sie uns auf Facebook",
+    "twitter": "Folgen Sie uns auf Twitter",
+    "copyright": "Alle Inhalte © {{year}} Brahmananda Saraswati Foundation, eine gemeinnützige Organisation. Alle Rechte vorbehalten.",
+    "trademark": "Transzendentale Meditation, TM, TM-Sidhi, Maharishi, Maharishi Yagya, Maharishi Jyotish, Maharishi Vedic und Yogic Flying sind geschützte Marken in vielen Ländern der Welt, einschließlich der Vereinigten Staaten und der Europäischen Union."
+  },
+  "about": {
+    "title": "Über Maharishi",
+    "subtitle": "Sein Leben und Vermächtnis",
+    "intro": "Maharishi Mahesh Yogi (1918-2008) war der Begründer der Transzendentalen Meditationstechnik und des Global Country of World Peace. Er widmete sein Leben der Vermittlung der zeitlosen Weisheit der vedischen Tradition an die moderne Welt.",
+    "earlyLife": "Frühes Leben und Ausbildung",
+    "earlyLifeText": "Als Mahesh Prasad Varma in Jabalpur, Indien geboren, studierte Maharishi Physik an der Allahabad University, bevor er seinen Meister Swami Brahmananda Saraswati traf. Dreizehn Jahre lang diente er als persönlicher Sekretär und Schüler seines Meisters.",
+    "teaching": "Lehrmission",
+    "teachingText": "1955 begann Maharishi, Transzendentale Meditation in ganz Indien zu unterrichten. 1959 machte er seinen ersten Besuch im Westen und begann eine weltweite Mission, die schließlich diese einfache, natürliche Technik Millionen von Menschen in über 100 Ländern bringen würde.",
+    "vedicScience": "Vedische Wissenschaft",
+    "vedicScienceText": "Maharisha belebrete das vollständige Wissen der vedischen Tradition wieder, einschließlich Ayurveda, Vedischer Architektur (Sthapatya Veda), Vedische Musik (Gandharva Veda) und die Technologien von Yagya und Jyotish."
+  },
+  "donate": {
+    "title": "Unterstützen Sie die Vedic Pandits",
+    "subtitle": "Ihr Beitrag hilft, Frieden für die Welt zu schaffen",
+    "intro": "Das Maharishi Vedic Pandits-Programm ist auf die großzügige Unterstützung von Spendern wie Ihnen angewiesen. Ihr Beitrag hilft bei der Ausbildung und Unterstützung dieser Friedensprofis, die ihr Leben der Schaffung von Harmonie und Kohärenz im Weltbewusstsein widmen.",
+    "whyDonate": "Warum spenden?",
+    "whyDonateText": "Indem Sie die Vedic Pandits unterstützen, tragen Sie direkt zum Weltfrieden bei. Wissenschaftliche Forschung hat gezeigt, dass Gruppen ausgebildeter Pandits, die zusammen praktizieren, einen messbaren Einfluss von Frieden und Positivität in der Umgebung schaffen.",
+    "howUsed": "Wie Ihre Spende verwendet wird",
+    "howUsedText": "Ihre Spenden gehen direkt zur Unterstützung der Ausbildung, Unterbringung, Verpflegung und Betreuung der Vedic Pandits. Jeder Beitrag, egal wie groß, hilft, diese wichtige Arbeit für den Weltfrieden aufrechtzuerhalten.",
+    "monthly": "Monatliche Spende",
+    "monthlyText": "Werden Sie ein dauerhafter Unterstützer mit einer monatlichen Spende.",
+    "oneTime": "Einmalige Spende",
+    "oneTimeText": "Leisten Sie einen einmaligen Beitrag in beliebiger Höhe.",
+    "donateButton": "Jetzt spenden",
+    "globalImpact": "Globale Wirkung",
+    "globalImpactText": "Ihr Beitrag hilft, einen messbaren Einfluss von Frieden und Positivität zu schaffen, der sich über die ganze Welt erstreckt.",
+    "widgetTitle": "Jetzt spenden",
+    "widgetSubtitle": "Ihre Spende macht einen Unterschied",
+    "oneTimeBullet1": "Sichere Zahlungsabwicklung",
+    "oneTimeBullet2": "Spendenbescheinigung",
+    "oneTimeBullet3": "Direkter Beitrag zum Frieden",
+    "monthlyBullet1": "Dauerhafte Unterstützung der Pandit-Ausbildung",
+    "monthlyBullet2": "Regelmässige Updates zum Programmfortschritt",
+    "monthlyBullet3": "Jederzeit kündbar",
+    "otherWaysTitle": "Weitere Spendenmöglichkeiten",
+    "otherWaysBullet1": "Banküberweisung (Kontaktieren Sie uns für Details)",
+    "otherWaysBullet2": "Scheck ausgestellt an: {{orgName}}",
+    "otherWaysBullet3": "Nachlassspenden und Vermächtnisse",
+    "otherWaysBullet4": "Aktien- und Wertpapierspenden",
+    "taxNote": "Die {{orgName}} ist {{orgDescription}}. Alle Spenden sind im gesetzlich zulässigen Rahmen steuerlich absetzbar. Sie erhalten eine Spendenbescheinigung für Ihre Unterlagen."
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Wir freuen uns von Ihnen zu hören",
+    "intro": "Haben Sie Fragen zum Maharishi Vedic Pandits-Programm? Möchten Sie mehr darüber erfahren, wie Sie den Weltfrieden unterstützen können? Nehmen Sie Kontakt mit uns auf.",
+    "form": {
+      "name": "Ihr Name",
+      "email": "E-Mail-Adresse",
+      "subject": "Betreff",
+      "message": "Ihre Nachricht",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet...",
+      "success": "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.",
+      "error": "Entschuldigung, beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+    },
+    "info": {
+      "title": "Kontaktinformationen",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "address": "Adresse"
+    }
+  },
+  "languages": {
+    "en": "English",
+    "de": "Deutsch",
+    "fr": "Français"
+  }
+}
