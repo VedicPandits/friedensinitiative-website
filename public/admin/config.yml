@@ -184,6 +184,16 @@ collections:
                   - { label: 'Sending state', name: sending, widget: string }
                   - { label: 'Success message', name: success, widget: string }
                   - { label: 'Error message',   name: error,   widget: string }
+              - label: 'Subject dropdown options'
+                name: subjectOptions
+                widget: object
+                fields:
+                  - { label: 'Placeholder',           name: placeholder, widget: string }
+                  - { label: 'General inquiry',       name: general,     widget: string }
+                  - { label: 'Donation questions',    name: donation,    widget: string }
+                  - { label: 'Volunteer',             name: volunteer,   widget: string }
+                  - { label: 'Media inquiries',       name: media,       widget: string }
+                  - { label: 'Other',                 name: other,       widget: string }
               - label: 'Contact information'
                 name: info
                 widget: object
@@ -192,6 +202,14 @@ collections:
                   - { label: 'Email label',   name: email,   widget: string }
                   - { label: 'Phone label',   name: phone,   widget: string }
                   - { label: 'Address label', name: address, widget: string }
+              - label: 'Office hours (optional block)'
+                name: officeHours
+                widget: object
+                fields:
+                  - { label: 'Section title', name: title, widget: string }
+                  - { label: 'Line 1',        name: line1, widget: string }
+                  - { label: 'Line 2',        name: line2, widget: string }
+              - { label: 'Response time note', name: responseTime, widget: text }
 
           - label: 'Footer'
             name: footer
@@ -357,6 +375,16 @@ collections:
                   - { label: 'Wird gesendet…', name: sending, widget: string }
                   - { label: 'Erfolgsmeldung', name: success, widget: string }
                   - { label: 'Fehlermeldung',  name: error,   widget: string }
+              - label: 'Betreff-Auswahl im Formular'
+                name: subjectOptions
+                widget: object
+                fields:
+                  - { label: 'Platzhalter',          name: placeholder, widget: string }
+                  - { label: 'Allgemeine Anfrage',   name: general,     widget: string }
+                  - { label: 'Fragen zu Spenden',    name: donation,    widget: string }
+                  - { label: 'Freiwilligenarbeit',   name: volunteer,   widget: string }
+                  - { label: 'Medienanfragen',       name: media,       widget: string }
+                  - { label: 'Sonstiges',            name: other,       widget: string }
               - label: 'Kontaktinformationen'
                 name: info
                 widget: object
@@ -365,6 +393,14 @@ collections:
                   - { label: 'E-Mail-Label',    name: email,   widget: string }
                   - { label: 'Telefon-Label',   name: phone,   widget: string }
                   - { label: 'Adress-Label',    name: address, widget: string }
+              - label: 'Bürozeiten (optionaler Block)'
+                name: officeHours
+                widget: object
+                fields:
+                  - { label: 'Abschnittstitel', name: title, widget: string }
+                  - { label: 'Zeile 1',         name: line1, widget: string }
+                  - { label: 'Zeile 2',         name: line2, widget: string }
+              - { label: 'Antwortzeit-Hinweis', name: responseTime, widget: text }
 
           - label: 'Fußzeile'
             name: footer
@@ -530,6 +566,16 @@ collections:
                   - { label: 'État envoi',    name: sending, widget: string }
                   - { label: 'Message succès', name: success, widget: string }
                   - { label: 'Message erreur', name: error,   widget: string }
+              - label: 'Options du sujet (menu déroulant)'
+                name: subjectOptions
+                widget: object
+                fields:
+                  - { label: 'Espace réservé',     name: placeholder, widget: string }
+                  - { label: 'Demande générale',   name: general,     widget: string }
+                  - { label: 'Questions sur dons', name: donation,    widget: string }
+                  - { label: 'Bénévolat',          name: volunteer,   widget: string }
+                  - { label: 'Demandes médias',    name: media,       widget: string }
+                  - { label: 'Autre',              name: other,       widget: string }
               - label: 'Informations contact'
                 name: info
                 widget: object
@@ -538,6 +584,14 @@ collections:
                   - { label: 'Étiquette email', name: email, widget: string }
                   - { label: 'Étiquette téléphone', name: phone, widget: string }
                   - { label: 'Étiquette adresse',  name: address, widget: string }
+              - label: 'Heures d''ouverture (bloc optionnel)'
+                name: officeHours
+                widget: object
+                fields:
+                  - { label: 'Titre section', name: title, widget: string }
+                  - { label: 'Ligne 1',       name: line1, widget: string }
+                  - { label: 'Ligne 2',       name: line2, widget: string }
+              - { label: 'Note temps de réponse', name: responseTime, widget: text }
 
           - label: 'Pied de page'
             name: footer
