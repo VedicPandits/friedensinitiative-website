@@ -47,7 +47,29 @@ export default function Contact() {
     setSubmitStatus('idle');
 
     try {
-      if (siteConfig.contactForm.provider === 'formspree') {
+      if (siteConfig.contactForm.useNetlifyForms) {
+        // Netlify Forms: submit URL-encoded body to '/' with form-name field.
+        // Netlify intercepts this server-side because index.html contains a
+        // hidden <form name="contact" data-netlify="true"> for detection.
+        const body = new URLSearchParams({
+          'form-name': 'contact',
+          'bot-field': '', // honeypot: real users leave empty, bots fill in
+          ...formState,
+        }).toString();
+
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body,
+        });
+
+        if (response.ok) {
+          setSubmitStatus('success');
+          setFormState({ name: '', email: '', subject: '', message: '' });
+        } else {
+          setSubmitStatus('error');
+        }
+      } else if (siteConfig.contactForm.provider === 'formspree') {
         const response = await fetch(siteConfig.contactForm.formspreeEndpoint, {
           method: 'POST',
           headers: {
@@ -62,26 +84,8 @@ export default function Contact() {
         } else {
           setSubmitStatus('error');
         }
-      } else if (siteConfig.contactForm.useNetlifyForms) {
-        // Netlify Forms handling
-        const form = e.target as HTMLFormElement;
-        const formData = new FormData(form);
-        
-        const response = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData as any).toString(),
-        });
-
-        if (response.ok) {
-          setSubmitStatus('success');
-          setFormState({ name: '', email: '', subject: '', message: '' });
-        } else {
-          setSubmitStatus('error');
-        }
       } else {
-        // For demo purposes, simulate success
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await new Promise((resolve) => setTimeout(resolve, 1500));
         setSubmitStatus('success');
         setFormState({ name: '', email: '', subject: '', message: '' });
       }
@@ -105,11 +109,14 @@ export default function Contact() {
       value: siteConfig.contact.phone,
       href: `tel:${siteConfig.contact.phone}`,
     }] : []),
-    ...(siteConfig.contact.address ? [{
+    ...(siteConfig.contact.organizationName || siteConfig.contact.addressLine ? [{
       icon: MapPin,
       label: t('contact.info.address'),
-      value: siteConfig.contact.address,
-      href: null, // Address is not a clickable link
+      value: {
+        org: siteConfig.contact.organizationName,
+        line: siteConfig.contact.addressLine,
+      },
+      href: null,
     }] : []),
   ];
 
@@ -117,7 +124,7 @@ export default function Contact() {
     <div className="pt-24 pb-20 bg-white">
       {/* Hero Banner */}
       <section className="relative py-20 lg:py-32 bg-gradient-to-br from-[#1a3a2a] via-[#2d5a45] to-[#1a3a2a] overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a227' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
@@ -172,10 +179,20 @@ export default function Contact() {
 
                 <form
                   onSubmit={handleSubmit}
-                  {...(siteConfig.contactForm.useNetlifyForms ? { 'data-netlify': 'true', name: 'contact' } : {})}
+                  name="contact"
+                  {...(siteConfig.contactForm.useNetlifyForms
+                    ? { 'data-netlify': 'true', 'data-netlify-honeypot': 'bot-field' }
+                    : {})}
                 >
                   {siteConfig.contactForm.useNetlifyForms && (
-                    <input type="hidden" name="form-name" value="contact" />
+                    <>
+                      <input type="hidden" name="form-name" value="contact" />
+                      <p hidden>
+                        <label>
+                          Don't fill this out: <input name="bot-field" />
+                        </label>
+                      </p>
+                    </>
                   )}
 
                   <div className="grid sm:grid-cols-2 gap-6 mb-6">
@@ -284,6 +301,27 @@ export default function Contact() {
 
                 <div className="space-y-6">
                   {contactInfo.map((item) => {
+                    // Value can be a string (email, phone) or a structured
+                    // postal-address object { org, line }.
+                    const valueNode = typeof item.value === 'string' ? (
+                      <p className="text-white group-hover:text-[#c9a227] transition-colors duration-300">
+                        {item.value}
+                      </p>
+                    ) : (
+                      <>
+                        {item.value.org && (
+                          <p className="text-white font-semibold leading-snug">
+                            {item.value.org}
+                          </p>
+                        )}
+                        {item.value.line && (
+                          <p className="text-white/90 leading-snug">
+                            {item.value.line}
+                          </p>
+                        )}
+                      </>
+                    );
+
                     const Inner = (
                       <>
                         <div className="w-12 h-12 rounded-full bg-[#c9a227]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#c9a227]/30 transition-colors duration-300">
@@ -291,13 +329,13 @@ export default function Contact() {
                         </div>
                         <div>
                           <p className="text-white/60 text-sm mb-1">{item.label}</p>
-                          <p className="text-white group-hover:text-[#c9a227] transition-colors duration-300 whitespace-pre-line">{item.value}</p>
+                          {valueNode}
                         </div>
                       </>
                     );
 
                     return item.href ? (
-                      <a
+                      
                         key={item.label}
                         href={item.href}
                         className="flex items-start space-x-4 group"
