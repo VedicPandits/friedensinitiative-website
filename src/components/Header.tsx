@@ -41,8 +41,8 @@ export default function Header() {
           {/* Logo */}
           <Link
             to="/"
-            className={`font-heading text-xl sm:text-2xl font-semibold text-[#333] transition-transform duration-500 ${
-              isScrolled ? 'scale-90' : 'scale-100'
+            className={`font-heading text-xl sm:text-2xl font-semibold transition-all duration-500 ${
+              isScrolled ? 'scale-90 text-[#333]' : 'scale-100 text-white'
             }`}
             style={{ transitionTimingFunction: 'var(--ease-sacred)' }}
           >
@@ -59,7 +59,9 @@ export default function Header() {
                 className={`nav-link px-3 py-2 text-sm font-medium transition-colors duration-300 ${
                   location.pathname === item.href
                     ? 'text-gold'
-                    : 'text-[#333] hover:text-gold'
+                    : isScrolled
+                      ? 'text-[#333] hover:text-gold'
+                      : 'text-white hover:text-gold'
                 }`}
               >
                 {t(item.label)}
@@ -73,7 +75,9 @@ export default function Header() {
             <div className="relative hidden sm:block">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-[#333] hover:text-gold transition-colors duration-300"
+                className={`flex items-center space-x-2 px-3 py-2 text-sm font-medium hover:text-gold transition-colors duration-300 ${
+                  isScrolled ? 'text-[#333]' : 'text-white'
+                }`}
               >
                 <Globe className="w-4 h-4" />
                 <span>{currentLang.flag} {currentLang.name}</span>
@@ -115,7 +119,9 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-[#333] hover:text-gold transition-colors duration-300"
+              className={`lg:hidden p-2 hover:text-gold transition-colors duration-300 ${
+                isScrolled ? 'text-[#333]' : 'text-white'
+              }`}
             >
               {isMobileMenuOpen ? (
                 <X className="w-6 h-6" />
