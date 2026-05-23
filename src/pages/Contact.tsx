@@ -85,6 +85,7 @@ export default function Contact() {
           setSubmitStatus('error');
         }
       } else {
+        // No provider configured — simulate success in dev.
         await new Promise((resolve) => setTimeout(resolve, 1500));
         setSubmitStatus('success');
         setFormState({ name: '', email: '', subject: '', message: '' });
@@ -112,11 +113,14 @@ export default function Contact() {
     ...(siteConfig.contact.organizationName || siteConfig.contact.addressLine ? [{
       icon: MapPin,
       label: t('contact.info.address'),
+      // For postal address we render two visual styles: organization name
+      // (bold) and address line(s) (normal). The renderer below checks for
+      // this shape.
       value: {
         org: siteConfig.contact.organizationName,
         line: siteConfig.contact.addressLine,
       },
-      href: null,
+      href: null, // Address is not a clickable link
     }] : []),
   ];
 
@@ -124,7 +128,7 @@ export default function Contact() {
     <div className="pt-24 pb-20 bg-white">
       {/* Hero Banner */}
       <section className="relative py-20 lg:py-32 bg-gradient-to-br from-[#1a3a2a] via-[#2d5a45] to-[#1a3a2a] overflow-hidden">
-        <div
+        <div 
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a227' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
@@ -187,6 +191,7 @@ export default function Contact() {
                   {siteConfig.contactForm.useNetlifyForms && (
                     <>
                       <input type="hidden" name="form-name" value="contact" />
+                      {/* Honeypot: real users never see/fill this */}
                       <p hidden>
                         <label>
                           Don't fill this out: <input name="bot-field" />
@@ -335,7 +340,7 @@ export default function Contact() {
                     );
 
                     return item.href ? (
-                      
+                      <a
                         key={item.label}
                         href={item.href}
                         className="flex items-start space-x-4 group"
