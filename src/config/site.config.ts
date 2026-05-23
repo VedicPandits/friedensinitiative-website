@@ -30,19 +30,30 @@ export const siteConfig = {
   },
   
   // DonorBox Configuration - EDIT THESE
+  // Each language has its own DonorBox campaign
   donorbox: {
+    // Widget script URL (same for all languages)
     scriptSrc: 'https://donorbox.org/widgets.js',
+    
+    // Campaign IDs per language
     campaigns: {
-      en: 'peaceinitiative',
-      de: 'friedensinitiative',
-      fr: 'initiative-mondiale-de-paix',
+      en: 'peaceinitiative',           // English campaign
+      de: 'friedensinitiative',        // German campaign
+      fr: 'initiative-mondiale-de-paix', // French campaign
     },
   },
   
   // Contact Form Configuration
   contactForm: {
+    // Options: 'formspree', 'netlify', 'emailjs', or 'custom'
+    // For Formspree: https://formspree.io/
+    // For Netlify Forms: https://docs.netlify.com/forms/setup/
     provider: 'netlify',
+
+    // Your Formspree endpoint (only used if provider === 'formspree')
     formspreeEndpoint: 'https://formspree.io/f/YOUR_FORM_ID',
+
+    // Netlify Forms enabled
     useNetlifyForms: true,
   },
   
@@ -70,7 +81,7 @@ export const siteConfig = {
     title: 'Maharishi Vedic Pandits - Peace-Creating Group',
     description: 'Creating peace for the world through the timeless Vedic traditions of India. Support the Maharishi Vedic Pandits program.',
     keywords: 'Maharishi, Vedic Pandits, Transcendental Meditation, TM, Yagya, World Peace, Vedic Tradition',
-    image: '/images/og-image.jpg',
+    image: '/images/og-image.jpg', // Social sharing image
   },
   
   // Languages available
