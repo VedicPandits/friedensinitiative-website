@@ -105,6 +105,7 @@
     "twintStep1": "Scannez le code QR avec l'app TWINT",
     "twintStep2": "Confirmez le montant et le don",
     "twintFallback": "Pas d'app TWINT ? Faites un don en ligne via RaiseNow",
+    "donorboxFallback": "Ouvrir le formulaire de don Donorbox dans un nouvel onglet",
     "cardsTitle": "Faire un don par carte de crédit (Donorbox)",
     "cardsIntro": "Le versement de votre don sera effectué de manière sécurisée à travers le widget Donorbox ci-contre.",
     "widgetTitle": "Faire un don",

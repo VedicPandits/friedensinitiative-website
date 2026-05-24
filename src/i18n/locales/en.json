@@ -105,6 +105,7 @@
     "twintStep1": "Scan the QR code with the TWINT app",
     "twintStep2": "Confirm the amount and donation",
     "twintFallback": "No TWINT app? Donate online via RaiseNow",
+    "donorboxFallback": "Open Donorbox donation form in new tab",
     "cardsTitle": "Donate by credit card",
     "cardsIntro": "Payment is processed securely through the Donorbox widget on the right.",
     "widgetTitle": "Donate Now",
