@@ -132,7 +132,9 @@ export default function Donate() {
             }`}
             style={{ transitionTimingFunction: 'var(--ease-sacred)' }}
           >
-            <p className="text-xl text-[#666] leading-relaxed">{t('donate.intro')}</p>
+            <p className="text-xl text-[#666] leading-relaxed italic mb-6">{t('donate.intro')}</p>
+            <p className="text-base text-[#555] leading-relaxed mb-4">{t('donate.introParagraph1')}</p>
+            <p className="text-base text-[#555] leading-relaxed">{t('donate.introParagraph2')}</p>
           </div>
 
           {/* Impact Cards */}
@@ -212,27 +214,96 @@ export default function Donate() {
                 </ul>
               </div>
 
-              {/* Other ways to give */}
+              {/* Bank transfer block */}
               <div className="bg-white border border-gray-200 rounded-xl p-8">
-                <h4 className="font-heading text-lg text-[#333] mb-4">{t('donate.otherWaysTitle')}</h4>
-                <ul className="space-y-3 text-[#666]">
-                  <li className="flex items-start space-x-3">
-                    <span className="text-gold mt-1">•</span>
-                    <span>{t('donate.otherWaysBullet1')}</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <span className="text-gold mt-1">•</span>
-                    <span>{t('donate.otherWaysBullet2', { orgName: siteConfig.organization.name })}</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <span className="text-gold mt-1">•</span>
-                    <span>{t('donate.otherWaysBullet3')}</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <span className="text-gold mt-1">•</span>
-                    <span>{t('donate.otherWaysBullet4')}</span>
-                  </li>
-                </ul>
+                <h4 className="font-heading text-lg text-[#333] mb-2">{t('donate.bankTitle')}</h4>
+                <p className="text-[#666] text-sm leading-relaxed mb-5">{t('donate.bankIntro')}</p>
+                <div className="flex flex-col md:flex-row md:items-start gap-6">
+                  <div className="flex-1 min-w-0">
+                    <dl className="space-y-2 text-sm">
+                      <div className="flex flex-col sm:flex-row sm:gap-2">
+                        <dt className="text-[#888] sm:w-32 flex-shrink-0">{t('donate.bankHolderLabel')}</dt>
+                        <dd className="text-[#333] font-medium">{t('donate.bankHolderValue')}</dd>
+                      </div>
+                      <div className="flex flex-col sm:flex-row sm:gap-2">
+                        <dt className="text-[#888] sm:w-32 flex-shrink-0">{t('donate.bankIbanLabel')}</dt>
+                        <dd className="text-[#333] font-mono font-semibold tracking-wide break-all">{siteConfig.bank.iban}</dd>
+                      </div>
+                      <div className="flex flex-col sm:flex-row sm:gap-2">
+                        <dt className="text-[#888] sm:w-32 flex-shrink-0">{t('donate.bankBicLabel')}</dt>
+                        <dd className="text-[#333] font-mono">{siteConfig.bank.bic}</dd>
+                      </div>
+                    </dl>
+                  </div>
+                  {siteConfig.bank.qrImage && (
+                    <div className="flex-shrink-0 flex flex-col items-center md:items-end">
+                      <img
+                        src={siteConfig.bank.qrImage}
+                        alt="Swiss QR-Bill"
+                        className="w-40 h-40 rounded border border-gray-200 bg-white"
+                      />
+                    </div>
+                  )}
+                </div>
+                {siteConfig.bank.qrImage && (
+                  <p className="mt-5 pt-5 border-t border-gray-100 text-xs text-[#666] leading-relaxed">
+                    {t('donate.bankQrHint')}
+                  </p>
+                )}
+              </div>
+
+              {/* TWINT block - shown if a QR image is configured */}
+              {siteConfig.twint.qrImage && (
+                <div className="bg-white border border-gray-200 rounded-xl p-8">
+                  <h4 className="font-heading text-lg text-[#333] mb-2">{t('donate.twintTitle')}</h4>
+                  <p className="text-[#666] text-sm leading-relaxed mb-5">{t('donate.twintIntro')}</p>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+                    <img
+                      src={siteConfig.twint.qrImage}
+                      alt="TWINT QR Code"
+                      className="w-40 h-40 flex-shrink-0 rounded border border-gray-200"
+                    />
+                    <ol className="text-sm text-[#555] space-y-3 leading-relaxed list-none">
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gold/15 text-gold text-xs font-bold flex items-center justify-center">1</span>
+                        <span>{t('donate.twintStep1')}</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gold/15 text-gold text-xs font-bold flex items-center justify-center">2</span>
+                        <span>{t('donate.twintStep2')}</span>
+                      </li>
+                    </ol>
+                  </div>
+                  {(() => {
+                    const lang = i18n.language as keyof typeof siteConfig.twint.raiseNowUrls;
+                    const fallbackUrl = siteConfig.twint.raiseNowUrls?.[lang] || siteConfig.twint.raiseNowUrls?.en;
+                    return fallbackUrl ? (
+                      <div className="mt-5 pt-5 border-t border-gray-100">
+                        <a
+                          href={fallbackUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-gold hover:underline"
+                        >
+                          {t('donate.twintFallback')} →
+                        </a>
+                      </div>
+                    ) : null;
+                  })()}
+                </div>
+              )}
+
+              {/* Volunteer note + donation email */}
+              <div className="bg-[#f5efe2] border border-[#c9a227]/30 rounded-xl p-6 text-sm text-[#555] leading-relaxed">
+                <p className="mb-3">{t('donate.volunteersNote')}</p>
+                <p>
+                  <a
+                    href={`mailto:${siteConfig.donationEmail}`}
+                    className="text-gold hover:underline font-medium"
+                  >
+                    {siteConfig.donationEmail}
+                  </a>
+                </p>
               </div>
             </div>
 

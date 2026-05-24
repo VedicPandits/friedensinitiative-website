@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Calendar, MapPin, FileText, ShieldCheck, Download } from 'lucide-react';
+import { siteConfig } from '../config/site.config';
 
 export default function About() {
   const { t } = useTranslation();
@@ -157,6 +159,83 @@ export default function About() {
                 even when we are dynamically busy."
               </blockquote>
               <cite className="text-gold font-medium not-italic">— Maharishi Mahesh Yogi</cite>
+            </div>
+          </div>
+
+          {/* Swiss Initiative Section */}
+          <div
+            className={`mt-24 max-w-4xl mx-auto transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+            style={{ transitionTimingFunction: 'var(--ease-sacred)', transitionDelay: '1000ms' }}
+          >
+            <div className="bg-gradient-to-br from-[#1a3a2a] to-[#2d5a45] rounded-xl shadow-xl p-8 sm:p-12 text-white">
+              <div className="text-center mb-8">
+                <h2 className="font-heading text-3xl sm:text-4xl text-white mb-3">
+                  {t('about.swissTitle')}
+                </h2>
+                <p className="text-white/70 text-lg">{t('about.swissSubtitle')}</p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                {/* Founding */}
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a227]/20 flex items-center justify-center flex-shrink-0">
+                    <Calendar className="w-5 h-5 text-[#c9a227]" />
+                  </div>
+                  <p className="text-white/90 leading-relaxed text-sm">
+                    {t('about.swissFounding')}
+                  </p>
+                </div>
+
+                {/* Legal form */}
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a227]/20 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 text-[#c9a227]" />
+                  </div>
+                  <p className="text-white/90 leading-relaxed text-sm">
+                    {t('about.swissLegal')}
+                  </p>
+                </div>
+
+                {/* Tax exemption */}
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a227]/20 flex items-center justify-center flex-shrink-0">
+                    <ShieldCheck className="w-5 h-5 text-[#c9a227]" />
+                  </div>
+                  <p className="text-white/90 leading-relaxed text-sm">
+                    {t('about.swissTax')}
+                  </p>
+                </div>
+
+                {/* UID */}
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a227]/20 flex items-center justify-center flex-shrink-0">
+                    <FileText className="w-5 h-5 text-[#c9a227]" />
+                  </div>
+                  <p className="text-white/90 leading-relaxed text-sm font-medium">
+                    {t('about.swissUid')}
+                  </p>
+                </div>
+              </div>
+
+              {/* Documents (Statuten PDF link) */}
+              {siteConfig.organization.statutesPdf && (
+                <div className="mt-10 pt-8 border-t border-white/20 text-center">
+                  <h3 className="font-heading text-lg text-white mb-4">
+                    {t('about.swissDocsTitle')}
+                  </h3>
+                  <a
+                    href={siteConfig.organization.statutesPdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 px-5 py-3 bg-[#c9a227] text-white text-sm font-medium rounded hover:bg-[#b8921f] transition-all duration-300 hover:-translate-y-0.5"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>{t('about.swissDocsStatutes')}</span>
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>
