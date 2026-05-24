@@ -42,6 +42,39 @@ export const siteConfig = {
       fr: 'initiative-mondiale-de-paix', // French campaign
     },
   },
+
+  // Bank Transfer (PostFinance)
+  // Note: 'holder' here is a fallback; the actual displayed name comes
+  // from i18n (donate.bankHolderValue) so it can be localized correctly.
+  bank: {
+    holder: 'Globale Friedensinitiative Schweiz, 4000 Basel',
+    iban: 'CH82 0900 0000 8547 9574 7',
+    bic: 'POFICHBEXXX',
+    // Swiss QR-Bill (QR-Rechnung) image path. Donors can scan this with any
+    // Swiss banking app and the payment form is pre-filled automatically.
+    // Empty string hides the QR. Generate a new one if the address changes:
+    // e.g. via your PostFinance banking or https://qr-rechnung-generator.ch
+    qrImage: '/images/swiss-qr.png',
+  },
+
+  // TWINT donation (via RaiseNow)
+  // The QR code contains a TWINT-pairing code (NOT a URL), so it must be
+  // scanned with the TWINT app. The RaiseNow URLs below are a fallback for
+  // desktop users who can't scan: they open a RaiseNow web donation page.
+  twint: {
+    // QR code image path. Empty string hides the TWINT block.
+    qrImage: '/images/twint-qr.png',
+    // Per-language RaiseNow web donation page (used as fallback link).
+    // Leave a language empty to hide the fallback link for that language.
+    raiseNowUrls: {
+      en: 'https://donate.raisenow.io/pxmbx?lng=en',
+      de: 'https://donate.raisenow.io/pxmbx?lng=de',
+      fr: 'https://donate.raisenow.io/pxmbx?lng=fr',
+    },
+  },
+
+  // Donation-specific email shown on the donate page
+  donationEmail: 'spenden@friedensinitiative.ch',
   
   // Contact Form Configuration
   contactForm: {
@@ -58,10 +91,26 @@ export const siteConfig = {
   },
   
   // Organization Info
+  // The official multi-language name is set per language; the website picks
+  // the right form via i18n. The 'name' below is the fallback / canonical
+  // name shown e.g. in addresses or when no language context is available.
+  // Per Vereinsstatuten (Art. 60 ff. ZGB, Sitz Basel) gibt es vier
+  // amtliche Namensvarianten: DE, FR, IT, RM, EN.
   organization: {
-    name: 'Brahmananda Saraswati Foundation',
-    description: 'a non-profit organization',
-    foundedYear: 1995,
+    name: 'Globale Friedensinitiative Schweiz',
+    // Other official names from the statutes (not currently displayed,
+    // kept here for reference and future use):
+    //   FR: 'Initiative mondiale de Paix - Suisse'
+    //   IT: 'Iniziativa Mondiale di Pace - Svizzera'
+    //   RM: 'Iniziativa Mundiala da Pasch - Svizra'
+    //   EN: 'Global Peace Initiative Switzerland'
+    description: 'ein gemeinnütziger Verein nach Schweizer Recht',
+    foundedYear: 2012,
+    uid: 'CHE-142.469.811',
+    // Path to statutes PDF relative to /public.
+    // If the file does not exist, the link is automatically hidden.
+    // To activate: upload your PDF as public/documents/statuten.pdf
+    statutesPdf: '/documents/statuten.pdf',
   },
   
   // Statistics (shown on the site)
