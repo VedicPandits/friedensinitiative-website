@@ -3,26 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { Heart, Users, Globe, Sparkles, Gift } from 'lucide-react';
 import { siteConfig } from '../config/site.config';
 
-// Extend JSX IntrinsicElements for DonorBox custom element
-declare module 'react' {
-  namespace JSX {
-    interface IntrinsicElements {
-      'dbox-widget': {
-        campaign?: string;
-        type?: string;
-        'enable-auto-scroll'?: string;
-        className?: string;
-      };
-    }
-  }
-}
-
 export default function Donate() {
   const { t, i18n } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const scriptRef = useRef<HTMLScriptElement | null>(null);
+  const widgetContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -61,29 +48,28 @@ export default function Donate() {
     }
   }, [scriptLoaded]);
 
-  // Re-render widget when language changes
+  // Create / re-create the DonorBox widget imperatively inside our container.
+  // Runs whenever the script finishes loading, or the language changes.
+  // We do NOT use JSX for the <dbox-widget> custom element because that path
+  // triggers a crash inside DonorBox's widgets.js (NotSupportedError on
+  // createElement). Building the element by hand with setAttribute works.
   useEffect(() => {
-    if (scriptLoaded) {
-      // Force re-render of the widget by removing and re-adding
-      const widgets = document.querySelectorAll('dbox-widget');
-      widgets.forEach((widget) => {
-        const parent = widget.parentNode;
-        if (parent) {
-          const newWidget = document.createElement('dbox-widget');
-          newWidget.setAttribute('campaign', siteConfig.donorbox.campaigns[i18n.language as keyof typeof siteConfig.donorbox.campaigns] || siteConfig.donorbox.campaigns.en);
-          newWidget.setAttribute('type', 'donation_form');
-          newWidget.setAttribute('enable-auto-scroll', 'true');
-          parent.replaceChild(newWidget, widget);
-        }
-      });
-    }
-  }, [i18n.language, scriptLoaded]);
+    if (!scriptLoaded) return;
+    const container = widgetContainerRef.current;
+    if (!container) return;
 
-  // Get campaign ID for current language
-  const getCampaignId = () => {
+    // Clear any existing widget
+    container.innerHTML = '';
+
     const lang = i18n.language as keyof typeof siteConfig.donorbox.campaigns;
-    return siteConfig.donorbox.campaigns[lang] || siteConfig.donorbox.campaigns.en;
-  };
+    const campaign = siteConfig.donorbox.campaigns[lang] || siteConfig.donorbox.campaigns.en;
+
+    const widget = document.createElement('dbox-widget');
+    widget.setAttribute('campaign', campaign);
+    widget.setAttribute('type', 'donation_form');
+    widget.setAttribute('enable-auto-scroll', 'true');
+    container.appendChild(widget);
+  }, [scriptLoaded, i18n.language]);
 
   const impactItems = [
     {
@@ -227,15 +213,15 @@ export default function Donate() {
                       </div>
                       <div className="flex flex-col sm:flex-row sm:gap-2">
                         <dt className="text-[#888] sm:w-32 flex-shrink-0">{t('donate.bankIbanLabel')}</dt>
-                        <dd className="text-[#333] font-mono font-semibold tracking-wide break-all">{siteConfig.bank.iban}</dd>
+                        <dd className="text-[#333] font-mono font-semibold tracking-wide break-all">{siteConfig.bank?.iban ?? 'CH82 0900 0000 8547 9574 7'}</dd>
                       </div>
                       <div className="flex flex-col sm:flex-row sm:gap-2">
                         <dt className="text-[#888] sm:w-32 flex-shrink-0">{t('donate.bankBicLabel')}</dt>
-                        <dd className="text-[#333] font-mono">{siteConfig.bank.bic}</dd>
+                        <dd className="text-[#333] font-mono">{siteConfig.bank?.bic ?? 'POFICHBEXXX'}</dd>
                       </div>
                     </dl>
                   </div>
-                  {siteConfig.bank.qrImage && (
+                  {siteConfig.bank?.qrImage && (
                     <div className="flex-shrink-0 flex flex-col items-center md:items-end">
                       <img
                         src={siteConfig.bank.qrImage}
@@ -245,7 +231,7 @@ export default function Donate() {
                     </div>
                   )}
                 </div>
-                {siteConfig.bank.qrImage && (
+                {siteConfig.bank?.qrImage && (
                   <p className="mt-5 pt-5 border-t border-gray-100 text-xs text-[#666] leading-relaxed">
                     {t('donate.bankQrHint')}
                   </p>
@@ -253,7 +239,7 @@ export default function Donate() {
               </div>
 
               {/* TWINT block - shown if a QR image is configured */}
-              {siteConfig.twint.qrImage && (
+              {siteConfig.twint?.qrImage && (
                 <div className="bg-white border border-gray-200 rounded-xl p-8">
                   <h4 className="font-heading text-lg text-[#333] mb-2">{t('donate.twintTitle')}</h4>
                   <p className="text-[#666] text-sm leading-relaxed mb-5">{t('donate.twintIntro')}</p>
@@ -275,8 +261,9 @@ export default function Donate() {
                     </ol>
                   </div>
                   {(() => {
-                    const lang = i18n.language as keyof typeof siteConfig.twint.raiseNowUrls;
-                    const fallbackUrl = siteConfig.twint.raiseNowUrls?.[lang] || siteConfig.twint.raiseNowUrls?.en;
+                    const lang = i18n.language as 'en' | 'de' | 'fr';
+                    const urls = siteConfig.twint?.raiseNowUrls;
+                    const fallbackUrl = urls?.[lang] || urls?.en;
                     return fallbackUrl ? (
                       <div className="mt-5 pt-5 border-t border-gray-100">
                         <a
@@ -296,14 +283,16 @@ export default function Donate() {
               {/* Volunteer note + donation email */}
               <div className="bg-[#f5efe2] border border-[#c9a227]/30 rounded-xl p-6 text-sm text-[#555] leading-relaxed">
                 <p className="mb-3">{t('donate.volunteersNote')}</p>
-                <p>
-                  <a
-                    href={`mailto:${siteConfig.donationEmail}`}
-                    className="text-gold hover:underline font-medium"
-                  >
-                    {siteConfig.donationEmail}
-                  </a>
-                </p>
+                {siteConfig.donationEmail && (
+                  <p>
+                    <a
+                      href={`mailto:${siteConfig.donationEmail}`}
+                      className="text-gold hover:underline font-medium"
+                    >
+                      {siteConfig.donationEmail}
+                    </a>
+                  </p>
+                )}
               </div>
             </div>
 
@@ -324,15 +313,11 @@ export default function Donate() {
                   </p>
                 </div>
                 <div className="p-6">
-                  {/* DonorBox Widget - Custom Element */}
-                  {scriptLoaded && (
-                    <dbox-widget
-                      campaign={getCampaignId()}
-                      type="donation_form"
-                      enable-auto-scroll="true"
-                    />
-                  )}
-                  
+                  {/* DonorBox Widget container - widget is created imperatively
+                      (see useEffect below) because React's JSX rendering of
+                      this custom element triggers a crash inside widgets.js. */}
+                  <div ref={widgetContainerRef} />
+
                   {/* Fallback while script loads */}
                   {!scriptLoaded && (
                     <div className="flex items-center justify-center py-12">
