@@ -131,6 +131,14 @@ collections:
               - { label: 'Teaching – text',       name: teachingText,     widget: text }
               - { label: 'Vedic science – title', name: vedicScience,     widget: string }
               - { label: 'Vedic science – text',  name: vedicScienceText, widget: text }
+              - { label: 'Swiss initiative – title',    name: swissTitle,    widget: string }
+              - { label: 'Swiss initiative – subtitle', name: swissSubtitle, widget: string }
+              - { label: 'Swiss – founding text',       name: swissFounding, widget: text }
+              - { label: 'Swiss – legal form',          name: swissLegal,    widget: text }
+              - { label: 'Swiss – tax exemption',       name: swissTax,      widget: text }
+              - { label: 'Swiss – UID line',            name: swissUid,      widget: string }
+              - { label: 'Swiss – documents heading',   name: swissDocsTitle,    widget: string }
+              - { label: 'Swiss – statutes link label', name: swissDocsStatutes, widget: string }
 
           - label: 'Donate page'
             name: donate
@@ -139,6 +147,8 @@ collections:
               - { label: 'Title',          name: title,         widget: string }
               - { label: 'Subtitle',       name: subtitle,      widget: string }
               - { label: 'Introduction',   name: intro,         widget: text }
+              - { label: 'Intro paragraph 1', name: introParagraph1, widget: text }
+              - { label: 'Intro paragraph 2', name: introParagraph2, widget: text }
               - { label: 'Why donate – title', name: whyDonate,     widget: string }
               - { label: 'Why donate – text',  name: whyDonateText, widget: text }
               - { label: 'How used – title',   name: howUsed,       widget: string }
@@ -158,12 +168,29 @@ collections:
               - { label: 'Monthly bullet 1',  name: monthlyBullet1, widget: string }
               - { label: 'Monthly bullet 2',  name: monthlyBullet2, widget: string }
               - { label: 'Monthly bullet 3',  name: monthlyBullet3, widget: string }
-              - { label: 'Other ways – title',   name: otherWaysTitle,   widget: string }
-              - { label: 'Other ways – bullet 1', name: otherWaysBullet1, widget: string }
-              - { label: 'Other ways – bullet 2', name: otherWaysBullet2, widget: string, hint: 'Use {{orgName}} to insert the organization name.' }
-              - { label: 'Other ways – bullet 3', name: otherWaysBullet3, widget: string }
-              - { label: 'Other ways – bullet 4', name: otherWaysBullet4, widget: string }
-              - { label: 'Tax note',         name: taxNote,        widget: text, hint: 'Use {{orgName}} and {{orgDescription}} for organization info.' }
+              - { label: 'Other ways – title (legacy, unused)',   name: otherWaysTitle,   widget: string, required: false }
+              - { label: 'Other ways – bullet 1 (legacy)', name: otherWaysBullet1, widget: string, required: false }
+              - { label: 'Other ways – bullet 2 (legacy)', name: otherWaysBullet2, widget: string, required: false }
+              - { label: 'Other ways – bullet 3 (legacy)', name: otherWaysBullet3, widget: string, required: false }
+              - { label: 'Other ways – bullet 4 (legacy)', name: otherWaysBullet4, widget: string, required: false }
+              - { label: 'Tax note',         name: taxNote,        widget: text, hint: 'Use {{orgName}} to insert the organization name.' }
+              - { label: 'Donation email line',  name: spendenEmail,    widget: string }
+              - { label: 'Board volunteers note', name: volunteersNote, widget: text }
+              - { label: 'Bank – title',         name: bankTitle,    widget: string }
+              - { label: 'Bank – intro text',    name: bankIntro,    widget: text }
+              - { label: 'Bank – holder label',  name: bankHolderLabel, widget: string }
+              - { label: 'Bank – holder value (name shown to donors)',  name: bankHolderValue, widget: string, hint: 'Must match the account holder on file with PostFinance.' }
+              - { label: 'Bank – IBAN label',    name: bankIbanLabel,   widget: string }
+              - { label: 'Bank – BIC label',     name: bankBicLabel,    widget: string }
+              - { label: 'Bank – QR-Bill hint',  name: bankQrHint,      widget: text, hint: 'Shown below the bank details when a Swiss QR-Bill image is configured.' }
+              - { label: 'TWINT – title',        name: twintTitle,   widget: string }
+              - { label: 'TWINT – intro text',   name: twintIntro,   widget: text }
+              - { label: 'TWINT – button label', name: twintButton,  widget: string }
+              - { label: 'TWINT – step 1',       name: twintStep1,   widget: string }
+              - { label: 'TWINT – step 2',       name: twintStep2,   widget: string }
+              - { label: 'TWINT – fallback link label', name: twintFallback, widget: string }
+              - { label: 'Credit card – title',  name: cardsTitle,   widget: string }
+              - { label: 'Credit card – intro',  name: cardsIntro,   widget: text }
 
           - label: 'Contact page'
             name: contact
@@ -222,6 +249,7 @@ collections:
               - { label: 'Twitter label', name: twitter,     widget: string }
               - { label: 'Copyright',     name: copyright,   widget: string, hint: 'Use {{year}} for the current year.' }
               - { label: 'Trademark',     name: trademark,   widget: text }
+              - { label: 'Legal note',    name: legalNote,   widget: string, hint: 'Org name, address, UID, tax status. Shown on every page above the trademark.' }
 
           - label: 'Language labels'
             name: languages
@@ -322,6 +350,14 @@ collections:
               - { label: 'Lehre – Text',       name: teachingText,     widget: text }
               - { label: 'Vedische Wissenschaft – Titel', name: vedicScience,     widget: string }
               - { label: 'Vedische Wissenschaft – Text',  name: vedicScienceText, widget: text }
+              - { label: 'Schweizer Initiative – Titel',    name: swissTitle,    widget: string }
+              - { label: 'Schweizer Initiative – Untertitel', name: swissSubtitle, widget: string }
+              - { label: 'Schweiz – Gründungstext',          name: swissFounding, widget: text }
+              - { label: 'Schweiz – Vereinsform',            name: swissLegal,    widget: text }
+              - { label: 'Schweiz – Steuerbefreiung',        name: swissTax,      widget: text }
+              - { label: 'Schweiz – UID-Zeile',              name: swissUid,      widget: string }
+              - { label: 'Schweiz – Dokumente-Überschrift',  name: swissDocsTitle,    widget: string }
+              - { label: 'Schweiz – Statuten-Link-Text',     name: swissDocsStatutes, widget: string }
 
           - label: 'Spenden-Seite'
             name: donate
@@ -330,6 +366,8 @@ collections:
               - { label: 'Titel',         name: title,         widget: string }
               - { label: 'Untertitel',    name: subtitle,      widget: string }
               - { label: 'Einleitung',    name: intro,         widget: text }
+              - { label: 'Einleitung – Absatz 1', name: introParagraph1, widget: text }
+              - { label: 'Einleitung – Absatz 2', name: introParagraph2, widget: text }
               - { label: 'Warum spenden – Titel', name: whyDonate,     widget: string }
               - { label: 'Warum spenden – Text',  name: whyDonateText, widget: text }
               - { label: 'Verwendung – Titel',    name: howUsed,       widget: string }
@@ -349,12 +387,29 @@ collections:
               - { label: 'Monatlich – Punkt 1', name: monthlyBullet1, widget: string }
               - { label: 'Monatlich – Punkt 2', name: monthlyBullet2, widget: string }
               - { label: 'Monatlich – Punkt 3', name: monthlyBullet3, widget: string }
-              - { label: 'Weitere Möglichkeiten – Titel',   name: otherWaysTitle,   widget: string }
-              - { label: 'Weitere Möglichkeiten – Punkt 1', name: otherWaysBullet1, widget: string }
-              - { label: 'Weitere Möglichkeiten – Punkt 2', name: otherWaysBullet2, widget: string, hint: 'Mit {{orgName}} wird der Organisationsname eingefügt.' }
-              - { label: 'Weitere Möglichkeiten – Punkt 3', name: otherWaysBullet3, widget: string }
-              - { label: 'Weitere Möglichkeiten – Punkt 4', name: otherWaysBullet4, widget: string }
-              - { label: 'Steuerhinweis',     name: taxNote,        widget: text, hint: 'Mit {{orgName}} und {{orgDescription}} werden Organisationsdaten eingefügt.' }
+              - { label: 'Weitere Möglichkeiten – Titel (Altfeld)',   name: otherWaysTitle,   widget: string, required: false }
+              - { label: 'Weitere Möglichkeiten – Punkt 1 (Altfeld)', name: otherWaysBullet1, widget: string, required: false }
+              - { label: 'Weitere Möglichkeiten – Punkt 2 (Altfeld)', name: otherWaysBullet2, widget: string, required: false }
+              - { label: 'Weitere Möglichkeiten – Punkt 3 (Altfeld)', name: otherWaysBullet3, widget: string, required: false }
+              - { label: 'Weitere Möglichkeiten – Punkt 4 (Altfeld)', name: otherWaysBullet4, widget: string, required: false }
+              - { label: 'Steuerhinweis',     name: taxNote,        widget: text, hint: 'Mit {{orgName}} wird der Organisationsname eingefügt.' }
+              - { label: 'Spenden-E-Mail-Zeile',  name: spendenEmail,    widget: string }
+              - { label: 'Hinweis Vorstand unentgeltlich', name: volunteersNote, widget: text }
+              - { label: 'Bank – Titel',         name: bankTitle,    widget: string }
+              - { label: 'Bank – Einleitung',    name: bankIntro,    widget: text }
+              - { label: 'Bank – Empfänger-Label',  name: bankHolderLabel, widget: string }
+              - { label: 'Bank – Empfänger-Name',    name: bankHolderValue, widget: string, hint: 'Muss mit dem bei PostFinance hinterlegten Kontoinhaber übereinstimmen.' }
+              - { label: 'Bank – IBAN-Label',       name: bankIbanLabel,   widget: string }
+              - { label: 'Bank – BIC-Label',        name: bankBicLabel,    widget: string }
+              - { label: 'Bank – QR-Rechnungs-Hinweis', name: bankQrHint,  widget: text, hint: 'Wird unter den Bank-Details angezeigt, wenn ein Swiss-QR-Bild konfiguriert ist.' }
+              - { label: 'TWINT – Titel',           name: twintTitle,   widget: string }
+              - { label: 'TWINT – Einleitung',      name: twintIntro,   widget: text }
+              - { label: 'TWINT – Button-Beschriftung', name: twintButton, widget: string }
+              - { label: 'TWINT – Schritt 1',          name: twintStep1,  widget: string }
+              - { label: 'TWINT – Schritt 2',          name: twintStep2,  widget: string }
+              - { label: 'TWINT – Fallback-Link-Text', name: twintFallback, widget: string }
+              - { label: 'Kreditkarte – Titel',     name: cardsTitle,   widget: string }
+              - { label: 'Kreditkarte – Einleitung', name: cardsIntro,  widget: text }
 
           - label: 'Kontakt-Seite'
             name: contact
@@ -413,6 +468,7 @@ collections:
               - { label: 'Twitter-Label', name: twitter,     widget: string }
               - { label: 'Copyright',     name: copyright,   widget: string, hint: 'Mit {{year}} wird das aktuelle Jahr eingefügt.' }
               - { label: 'Markenzeichen', name: trademark,   widget: text }
+              - { label: 'Rechtshinweis', name: legalNote,   widget: string, hint: 'Vereinsname, Adresse, UID, Steuerstatus. Wird auf jeder Seite über dem Markenhinweis angezeigt.' }
 
           - label: 'Sprachbezeichnungen'
             name: languages
@@ -513,6 +569,14 @@ collections:
               - { label: 'Enseignement – texte', name: teachingText,  widget: text }
               - { label: 'Science védique – titre', name: vedicScience,     widget: string }
               - { label: 'Science védique – texte', name: vedicScienceText, widget: text }
+              - { label: 'Initiative suisse – titre',     name: swissTitle,    widget: string }
+              - { label: 'Initiative suisse – sous-titre', name: swissSubtitle, widget: string }
+              - { label: 'Suisse – texte fondation',       name: swissFounding, widget: text }
+              - { label: 'Suisse – forme juridique',       name: swissLegal,    widget: text }
+              - { label: 'Suisse – exonération fiscale',   name: swissTax,      widget: text }
+              - { label: 'Suisse – ligne IDE',             name: swissUid,      widget: string }
+              - { label: 'Suisse – titre Documents',       name: swissDocsTitle,    widget: string }
+              - { label: 'Suisse – texte lien statuts',    name: swissDocsStatutes, widget: string }
 
           - label: 'Page Don'
             name: donate
@@ -521,6 +585,8 @@ collections:
               - { label: 'Titre',           name: title,         widget: string }
               - { label: 'Sous-titre',      name: subtitle,      widget: string }
               - { label: 'Introduction',    name: intro,         widget: text }
+              - { label: 'Intro – paragraphe 1', name: introParagraph1, widget: text }
+              - { label: 'Intro – paragraphe 2', name: introParagraph2, widget: text }
               - { label: 'Pourquoi donner – titre', name: whyDonate,     widget: string }
               - { label: 'Pourquoi donner – texte', name: whyDonateText, widget: text }
               - { label: 'Utilisation – titre',     name: howUsed,       widget: string }
@@ -540,12 +606,29 @@ collections:
               - { label: 'Mensuel – puce 1',  name: monthlyBullet1, widget: string }
               - { label: 'Mensuel – puce 2',  name: monthlyBullet2, widget: string }
               - { label: 'Mensuel – puce 3',  name: monthlyBullet3, widget: string }
-              - { label: 'Autres moyens – titre',   name: otherWaysTitle,   widget: string }
-              - { label: 'Autres moyens – puce 1', name: otherWaysBullet1, widget: string }
-              - { label: 'Autres moyens – puce 2', name: otherWaysBullet2, widget: string, hint: 'Utilisez {{orgName}} pour insérer le nom de l’organisation.' }
-              - { label: 'Autres moyens – puce 3', name: otherWaysBullet3, widget: string }
-              - { label: 'Autres moyens – puce 4', name: otherWaysBullet4, widget: string }
-              - { label: 'Note fiscale',           name: taxNote,        widget: text, hint: 'Utilisez {{orgName}} et {{orgDescription}} pour les infos d’organisation.' }
+              - { label: 'Autres moyens – titre (héritage)',   name: otherWaysTitle,   widget: string, required: false }
+              - { label: 'Autres moyens – puce 1 (héritage)', name: otherWaysBullet1, widget: string, required: false }
+              - { label: 'Autres moyens – puce 2 (héritage)', name: otherWaysBullet2, widget: string, required: false }
+              - { label: 'Autres moyens – puce 3 (héritage)', name: otherWaysBullet3, widget: string, required: false }
+              - { label: 'Autres moyens – puce 4 (héritage)', name: otherWaysBullet4, widget: string, required: false }
+              - { label: 'Note fiscale',           name: taxNote,        widget: text, hint: 'Utilisez {{orgName}} pour insérer le nom de l’organisation.' }
+              - { label: 'Ligne email de don',     name: spendenEmail,    widget: string }
+              - { label: 'Note comité bénévole',   name: volunteersNote, widget: text }
+              - { label: 'Banque – titre',         name: bankTitle,    widget: string }
+              - { label: 'Banque – introduction',  name: bankIntro,    widget: text }
+              - { label: 'Banque – étiquette titulaire', name: bankHolderLabel, widget: string }
+              - { label: 'Banque – nom du titulaire',    name: bankHolderValue, widget: string, hint: 'Doit correspondre au titulaire du compte enregistré chez PostFinance.' }
+              - { label: 'Banque – étiquette IBAN',      name: bankIbanLabel,   widget: string }
+              - { label: 'Banque – étiquette BIC',       name: bankBicLabel,    widget: string }
+              - { label: 'Banque – note QR-facture',      name: bankQrHint,      widget: text, hint: 'Affiché sous les détails bancaires quand une image QR-facture suisse est configurée.' }
+              - { label: 'TWINT – titre',           name: twintTitle,   widget: string }
+              - { label: 'TWINT – introduction',    name: twintIntro,   widget: text }
+              - { label: 'TWINT – texte du bouton', name: twintButton,  widget: string }
+              - { label: 'TWINT – étape 1',         name: twintStep1,   widget: string }
+              - { label: 'TWINT – étape 2',         name: twintStep2,   widget: string }
+              - { label: 'TWINT – lien de secours', name: twintFallback, widget: string }
+              - { label: 'Carte de crédit – titre',     name: cardsTitle,  widget: string }
+              - { label: 'Carte de crédit – introduction', name: cardsIntro, widget: text }
 
           - label: 'Page Contact'
             name: contact
@@ -604,6 +687,7 @@ collections:
               - { label: 'Twitter',        name: twitter,     widget: string }
               - { label: 'Copyright',      name: copyright,   widget: string, hint: 'Utilisez {{year}} pour l’année actuelle.' }
               - { label: 'Marque',         name: trademark,   widget: text }
+              - { label: 'Note légale',    name: legalNote,   widget: string, hint: 'Nom association, adresse, IDE, statut fiscal. Affiché sur chaque page au-dessus de la marque.' }
 
           - label: 'Noms de langues'
             name: languages
