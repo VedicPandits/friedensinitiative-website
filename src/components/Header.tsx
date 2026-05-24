@@ -47,13 +47,20 @@ export default function Header() {
           {/* Logo */}
           <Link
             to="/"
-            className={`font-heading text-xl sm:text-2xl font-semibold transition-all duration-500 ${
+            className={`flex items-center gap-3 font-heading text-xl sm:text-2xl font-semibold transition-all duration-500 ${
               isScrolled ? 'scale-90' : 'scale-100'
             } ${useDarkText ? 'text-[#333]' : 'text-white'}`}
             style={{ transitionTimingFunction: 'var(--ease-sacred)' }}
           >
-            <span className="text-gold">{siteConfig.siteName.split(' ')[0]}</span>{' '}
-            {siteConfig.siteName.split(' ').slice(1).join(' ')}
+            <img
+              src="/logo.png"
+              alt=""
+              className="h-8 sm:h-10 w-auto flex-shrink-0"
+            />
+            <span>
+              <span className="text-gold">{siteConfig.siteName.split(' ')[0]}</span>{' '}
+              <span className="hidden sm:inline">{siteConfig.siteName.split(' ').slice(1).join(' ')}</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
