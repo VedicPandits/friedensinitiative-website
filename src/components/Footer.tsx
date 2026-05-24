@@ -217,10 +217,6 @@ export default function Footer() {
               {t('footer.copyright', { year: currentYear })}
             </p>
 
-            <p className="text-xs text-[#bbb] mb-3 max-w-3xl mx-auto">
-              {t('footer.legalNote')}
-            </p>
-
             <p className="text-xs text-[#aaa] max-w-3xl mx-auto leading-relaxed">
               {t('footer.trademark')}
             </p>
