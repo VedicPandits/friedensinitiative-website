@@ -51,9 +51,8 @@
     "youtube": "Visit us on YouTube",
     "facebook": "Follow us on Facebook",
     "twitter": "Follow us on Twitter",
-    "copyright": "Entire contents © {{year}} Brahmananda Saraswati Foundation, a non-profit organization. All rights reserved.",
-    "trademark": "Transcendental Meditation, TM, TM-Sidhi, Maharishi, Maharishi Yagya, Maharishi Jyotish, Maharishi Vedic and Yogic Flying are protected trademarks in many countries around the world, including the United States and the European Union.",
-    "legalNote": "Globale Friedensinitiative Schweiz · 4000 Basel · UID: CHE-142.469.811 · Tax-exempt"
+    "copyright": "All content © {{year}} Globale Friedensinitiative Schweiz, a non-profit association, UID: CHE-142.469.811. All rights reserved.",
+    "trademark": "Transcendental Meditation, TM, TM-Sidhi, Maharishi, Maharishi Yagya, Maharishi Jyotish, Maharishi Vedic and Yogic Flying are protected trademarks in many countries around the world, including the United States and the European Union."
   },
   "about": {
     "title": "About Maharishi",
