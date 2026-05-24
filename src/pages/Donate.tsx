@@ -161,7 +161,7 @@ export default function Donate() {
               <div className="bg-gradient-to-br from-[#1a3a2a] to-[#2d5a45] rounded-xl shadow-md overflow-hidden text-white">
                 <div className="p-6">
                   <Gift className="w-8 h-8 text-[#c9a227] mb-3" />
-                  <h3 className="font-heading text-xl mb-2">{t('donate.oneTime')}</h3>
+                  <h3 className="font-heading text-xl text-white mb-2">{t('donate.oneTime')}</h3>
                   <p className="text-white/80 text-sm">{t('donate.oneTimeText')}</p>
                 </div>
               </div>
@@ -297,6 +297,24 @@ export default function Donate() {
                     </div>
                   </div>
                 )}
+
+                {/* Direct link to DonorBox (always shown, works even if widget fails) */}
+                {(() => {
+                  const lang = i18n.language as keyof typeof siteConfig.donorbox.campaigns;
+                  const campaign = siteConfig.donorbox.campaigns[lang] || siteConfig.donorbox.campaigns.en;
+                  return (
+                    <div className="mt-6 pt-6 border-t border-gray-100 text-center">
+                      <a
+                        href={`https://donorbox.org/${campaign}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-gold hover:underline"
+                      >
+                        {t('donate.donorboxFallback', { defaultValue: 'Spenden auf Donorbox.org öffnen' })} →
+                      </a>
+                    </div>
+                  );
+                })()}
               </div>
             </div>
 
