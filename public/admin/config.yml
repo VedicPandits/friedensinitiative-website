@@ -249,7 +249,6 @@ collections:
               - { label: 'Twitter label', name: twitter,     widget: string }
               - { label: 'Copyright',     name: copyright,   widget: string, hint: 'Use {{year}} for the current year.' }
               - { label: 'Trademark',     name: trademark,   widget: text }
-              - { label: 'Legal note',    name: legalNote,   widget: string, hint: 'Org name, address, UID, tax status. Shown on every page above the trademark.' }
 
           - label: 'Language labels'
             name: languages
@@ -468,7 +467,6 @@ collections:
               - { label: 'Twitter-Label', name: twitter,     widget: string }
               - { label: 'Copyright',     name: copyright,   widget: string, hint: 'Mit {{year}} wird das aktuelle Jahr eingefügt.' }
               - { label: 'Markenzeichen', name: trademark,   widget: text }
-              - { label: 'Rechtshinweis', name: legalNote,   widget: string, hint: 'Vereinsname, Adresse, UID, Steuerstatus. Wird auf jeder Seite über dem Markenhinweis angezeigt.' }
 
           - label: 'Sprachbezeichnungen'
             name: languages
@@ -687,7 +685,6 @@ collections:
               - { label: 'Twitter',        name: twitter,     widget: string }
               - { label: 'Copyright',      name: copyright,   widget: string, hint: 'Utilisez {{year}} pour l’année actuelle.' }
               - { label: 'Marque',         name: trademark,   widget: text }
-              - { label: 'Note légale',    name: legalNote,   widget: string, hint: 'Nom association, adresse, IDE, statut fiscal. Affiché sur chaque page au-dessus de la marque.' }
 
           - label: 'Noms de langues'
             name: languages
