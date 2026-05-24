@@ -65,13 +65,35 @@ function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        {/* Hero Logo — golden world map, dominant visual anchor */}
+        <div
+          className={`mx-auto mb-8 sm:mb-10 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
+          style={{
+            transitionTimingFunction: 'var(--ease-sacred)',
+            transitionDelay: '200ms',
+            maxWidth: 'min(480px, 80vw)',
+          }}
+        >
+          <img
+            src="/logo.png"
+            alt="Globale Friedensinitiative Schweiz"
+            className="w-full h-auto select-none"
+            style={{
+              filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.25))',
+            }}
+            draggable={false}
+          />
+        </div>
+
         <p
           className={`text-white/90 text-sm sm:text-base uppercase tracking-[0.3em] mb-4 transition-all duration-600 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
           style={{
             transitionTimingFunction: 'var(--ease-settle)',
-            transitionDelay: '400ms',
+            transitionDelay: '600ms',
           }}
         >
           {t('hero.subtitle')}
@@ -83,7 +105,7 @@ function HeroSection() {
           }`}
           style={{
             transitionTimingFunction: 'var(--ease-sacred)',
-            transitionDelay: '600ms',
+            transitionDelay: '800ms',
             textShadow: '0 4px 30px rgba(0,0,0,0.3)',
           }}
         >
@@ -96,7 +118,7 @@ function HeroSection() {
           }`}
           style={{
             transitionTimingFunction: 'var(--ease-flow)',
-            transitionDelay: '800ms',
+            transitionDelay: '1000ms',
           }}
         >
           <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#c9a227] to-transparent" />
@@ -110,7 +132,7 @@ function HeroSection() {
           }`}
           style={{
             transitionTimingFunction: 'var(--ease-settle)',
-            transitionDelay: '1000ms',
+            transitionDelay: '1200ms',
           }}
         >
           {t('hero.description')}

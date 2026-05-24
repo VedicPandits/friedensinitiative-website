@@ -204,31 +204,30 @@ export default function Donate() {
               <div className="bg-white border border-gray-200 rounded-xl p-8">
                 <h4 className="font-heading text-lg text-[#333] mb-2">{t('donate.bankTitle')}</h4>
                 <p className="text-[#666] text-sm leading-relaxed mb-5">{t('donate.bankIntro')}</p>
-                <div className="flex flex-col md:flex-row md:items-start gap-6">
-                  <div className="flex-1 min-w-0">
-                    <dl className="space-y-2 text-sm">
-                      <div className="flex flex-col sm:flex-row sm:gap-2">
-                        <dt className="text-[#888] sm:w-32 flex-shrink-0">{t('donate.bankHolderLabel')}</dt>
-                        <dd className="text-[#333] font-medium">{t('donate.bankHolderValue')}</dd>
-                      </div>
-                      <div className="flex flex-col sm:flex-row sm:gap-2">
-                        <dt className="text-[#888] sm:w-32 flex-shrink-0">{t('donate.bankIbanLabel')}</dt>
-                        <dd className="text-[#333] font-mono font-semibold tracking-wide break-all">{siteConfig.bank?.iban ?? 'CH82 0900 0000 8547 9574 7'}</dd>
-                      </div>
-                      <div className="flex flex-col sm:flex-row sm:gap-2">
-                        <dt className="text-[#888] sm:w-32 flex-shrink-0">{t('donate.bankBicLabel')}</dt>
-                        <dd className="text-[#333] font-mono">{siteConfig.bank?.bic ?? 'POFICHBEXXX'}</dd>
-                      </div>
-                    </dl>
-                  </div>
-                  {siteConfig.bank?.qrImage && (
-                    <div className="flex-shrink-0 flex flex-col items-center md:items-end">
-                      <img
-                        src={siteConfig.bank.qrImage}
-                        alt="Swiss QR-Bill"
-                        className="w-40 h-40 rounded border border-gray-200 bg-white"
-                      />
+                <div className="flex flex-col lg:flex-row lg:items-start lg:gap-6">
+                  <dl className="flex-1 space-y-2 text-sm mb-6 lg:mb-0">
+                    <div className="flex flex-wrap gap-x-3 gap-y-1">
+                      <dt className="text-[#888] w-full sm:w-28 flex-shrink-0">{t('donate.bankHolderLabel')}</dt>
+                      <dd className="text-[#333] font-medium flex-1 min-w-0">{t('donate.bankHolderValue', { defaultValue: siteConfig.bank?.holder ?? 'Globale Friedensinitiative Schweiz, 4000 Basel' })}</dd>
                     </div>
+                    <div className="flex flex-wrap gap-x-3 gap-y-1">
+                      <dt className="text-[#888] w-full sm:w-28 flex-shrink-0">{t('donate.bankIbanLabel')}</dt>
+                      <dd className="text-[#333] font-mono font-semibold tracking-wide flex-1 min-w-0">{siteConfig.bank?.iban ?? 'CH82 0900 0000 8547 9574 7'}</dd>
+                    </div>
+                    <div className="flex flex-wrap gap-x-3 gap-y-1">
+                      <dt className="text-[#888] w-full sm:w-28 flex-shrink-0">{t('donate.bankBicLabel')}</dt>
+                      <dd className="text-[#333] font-mono flex-1 min-w-0">{siteConfig.bank?.bic ?? 'POFICHBEXXX'}</dd>
+                    </div>
+                  </dl>
+                  {siteConfig.bank?.qrImage && (
+                    <img
+                      src={siteConfig.bank.qrImage}
+                      alt="Swiss QR-Bill"
+                      width={160}
+                      height={160}
+                      className="flex-shrink-0 rounded border border-gray-200 bg-white self-center lg:self-start"
+                      style={{ width: '160px', height: '160px', objectFit: 'contain' }}
+                    />
                   )}
                 </div>
                 {siteConfig.bank?.qrImage && (
@@ -247,9 +246,12 @@ export default function Donate() {
                     <img
                       src={siteConfig.twint.qrImage}
                       alt="TWINT QR Code"
-                      className="w-40 h-40 flex-shrink-0 rounded border border-gray-200"
+                      width={160}
+                      height={160}
+                      className="flex-shrink-0 rounded border border-gray-200 self-center sm:self-start"
+                      style={{ width: '160px', height: '160px', objectFit: 'contain' }}
                     />
-                    <ol className="text-sm text-[#555] space-y-3 leading-relaxed list-none">
+                    <ol className="text-sm text-[#555] space-y-3 leading-relaxed list-none flex-1 min-w-0">
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gold/15 text-gold text-xs font-bold flex items-center justify-center">1</span>
                         <span>{t('donate.twintStep1')}</span>
